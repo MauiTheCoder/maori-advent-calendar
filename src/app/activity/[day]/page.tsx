@@ -36,6 +36,7 @@ export default function Activity() {
   const [showResults, setShowResults] = useState(false)
   const [score, setScore] = useState(0)
   const [startTime] = useState(Date.now())
+  const [activityCompleted, setActivityCompleted] = useState(false)
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -250,11 +251,12 @@ export default function Activity() {
         })
       }
 
-      router.push('/journey')
+      // Mark activity as completed
+      setActivityCompleted(true)
     } catch (error) {
       console.error('Error completing activity:', error)
-      // Still redirect even if there's an error
-      router.push('/journey')
+      // Still mark as completed for UI purposes
+      setActivityCompleted(true)
     }
   }
 
@@ -487,7 +489,7 @@ export default function Activity() {
           </div>
 
           {/* Complete Activity Button */}
-          {(activity.type !== 'quiz' || showResults) && (
+          {!activityCompleted && (activity.type !== 'quiz' || showResults) && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -500,6 +502,51 @@ export default function Activity() {
               >
                 Complete Activity (+{activity.type === 'quiz' ? score : activity.points} points)
               </Button>
+            </motion.div>
+          )}
+
+          {/* Activity Completed - Navigation Options */}
+          {activityCompleted && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center space-y-6"
+            >
+              <div className="space-y-3">
+                <div className="text-2xl">🎉</div>
+                <h3 className="text-xl font-semibold">Activity Completed!</h3>
+                <p className="text-muted-foreground">
+                  You earned {activity.type === 'quiz' ? score : activity.points} points for this cultural activity.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  onClick={() => router.push('/journey')}
+                  size="lg"
+                  className="px-6"
+                >
+                  🛤️ Return to Journey
+                </Button>
+                <Button
+                  onClick={() => router.push('/dashboard')}
+                  variant="outline"
+                  size="lg"
+                  className="px-6"
+                >
+                  🏠 Go to Dashboard
+                </Button>
+                {day < 30 && (
+                  <Button
+                    onClick={() => router.push(`/activity/${day + 1}`)}
+                    variant="outline"
+                    size="lg"
+                    className="px-6"
+                  >
+                    ➡️ Next Activity
+                  </Button>
+                )}
+              </div>
             </motion.div>
           )}
         </motion.div>
