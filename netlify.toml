@@ -1,0 +1,21 @@
+[images]
+  remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
+
+[build]
+  command = "bun run build"
+  functions = ".netlify/functions"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NEXT_PUBLIC_FIREBASE_API_KEY = "AIzaSyBp2XYYHYqTc9JykhiTdhmLywGTdFQPhhc"
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = "mahuru-maori-2025.firebaseapp.com"
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID = "mahuru-maori-2025"
+  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET = "mahuru-maori-2025.firebasestorage.app"
+  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = "608916020621"
+  NEXT_PUBLIC_FIREBASE_APP_ID = "1:608916020621:web:0fc2bad8adaa65a99c71c4"
+  NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID = "G-CVYZRT7Y5Z"
+  NEXT_PUBLIC_SITE_URL = "https://same-cqh13rcjn98-latest.netlify.app"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

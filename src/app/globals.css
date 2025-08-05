@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Māori-inspired color palette */
+    --background: 38 25% 97%; /* Cream/bone white like carved pounamu */
+    --foreground: 150 15% 15%; /* Deep forest green */
+    --card: 38 30% 95%;
+    --card-foreground: 150 15% 15%;
+    --popover: 38 30% 95%;
+    --popover-foreground: 150 15% 15%;
+    --primary: 150 45% 25%; /* Rich pounamu green */
+    --primary-foreground: 38 25% 97%;
+    --secondary: 25 35% 85%; /* Warm earth tone */
+    --secondary-foreground: 150 15% 15%;
+    --muted: 25 20% 90%;
+    --muted-foreground: 150 10% 40%;
+    --accent: 15 60% 45%; /* Warm red ochre */
+    --accent-foreground: 38 25% 97%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 20% 85%;
+    --input: 25 20% 88%;
+    --ring: 150 45% 25%;
+    --radius: 0.5rem;
+
+    /* Cultural accent colors */
+    --pounamu: 150 45% 25%; /* Greenstone */
+    --kokowai: 15 60% 45%; /* Red ochre */
+    --kowhai: 45 85% 55%; /* Golden yellow */
+    --moana: 200 65% 35%; /* Ocean blue */
+    --whenua: 25 35% 60%; /* Earth brown */
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom cultural styling */
+@layer components {
+  .maori-pattern {
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        hsl(var(--border)) 10px,
+        hsl(var(--border)) 11px
+      );
+  }
+
+  .horizontal-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) hsl(var(--background));
+  }
+
+  .horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .horizontal-scroll::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  .cultural-card {
+    @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow;
+    backdrop-filter: blur(10px);
+  }
+
+  .trail-path {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 50%,
+      hsl(var(--primary)) 100%
+    );
+  }
+}
