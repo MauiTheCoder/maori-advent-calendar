@@ -149,7 +149,11 @@ export default function Journey() {
   const currentDayIndex = (profile?.current_day || 1) - 1
 
   const handleDayClick = (day: DayNode) => {
-    if (!day.isUnlocked) return
+    if (!day.isUnlocked) {
+      console.log('🔒 Activity locked for day:', day.day)
+      return
+    }
+    console.log('👆 Day clicked:', day.day, 'Setting selected day')
     setSelectedDay(day.day)
   }
 

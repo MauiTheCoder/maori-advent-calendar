@@ -35,7 +35,7 @@ export interface User {
   email: string
   name: string
   character_id?: string
-  difficulty_level?: 'beginner' | 'intermediate' | 'advanced'
+  difficulty_level?: 'beginner' | 'intermediate' | 'advanced' | null
   current_day: number
   total_points: number
   achievements: string[]
@@ -97,7 +97,7 @@ export const firebaseAuth = {
         email: user.email,
         name: name,
         character_id: null,
-        difficulty_level: 'beginner',
+        difficulty_level: null,
         current_day: 1,
         total_points: 0,
         achievements: [],

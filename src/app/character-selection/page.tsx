@@ -52,13 +52,17 @@ export default function CharacterSelectionPage() {
     setError('')
 
     try {
-      // Update user profile with selected character
+      // Get difficulty level based on selected character
+      const difficultyLevel = getDifficultyLevel(selectedCharacter)
+      
+      // Update user profile with selected character and difficulty level
       await updateDoc(doc(db, 'users', user.uid), {
         character_id: selectedCharacter.id,
+        difficulty_level: difficultyLevel,
         updated_at: new Date().toISOString()
       })
 
-      // Redirect to dashboard
+      // Redirect directly to dashboard (no difficulty selection needed)
       router.push('/dashboard')
     } catch (error) {
       console.error('Error selecting character:', error)
@@ -86,6 +90,19 @@ export default function CharacterSelectionPage() {
       return { level: 'Advanced', color: 'bg-purple-100 text-purple-800 border-purple-200' }
     }
     return { level: 'Cultural Guide', color: 'bg-gray-100 text-gray-800 border-gray-200' }
+  }
+
+  const getDifficultyLevel = (character: Character): 'beginner' | 'intermediate' | 'advanced' => {
+    if (character.name.includes('Beginner') || character.name.includes('Kiwi')) {
+      return 'beginner'
+    }
+    if (character.name.includes('Intermediate') || character.name.includes('Pūkeko')) {
+      return 'intermediate'
+    }
+    if (character.name.includes('Advanced') || character.name.includes('Tui')) {
+      return 'advanced'
+    }
+    return 'beginner' // fallback
   }
 
   if (loading) {
@@ -135,8 +152,8 @@ export default function CharacterSelectionPage() {
             Choose Your <span className="text-primary">Kaitiaki Guardian</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Select your cultural guardian based on your learning preference. Each Kaitiaki represents a different
-            level of cultural complexity and will guide you through your 30-day journey with appropriate depth.
+            Select your cultural guardian who will guide you through your 30-day journey. Each Kaitiaki represents a different
+            learning level and will automatically adjust your cultural experience with appropriate depth and complexity.
           </p>
         </motion.div>
 

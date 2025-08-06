@@ -11,8 +11,8 @@ export async function ensureUserProfile(userId: string, email: string, displayNa
       full_name: displayName || 'User',
       current_day: 1,
       total_points: 0,
-      difficulty_level: 'beginner',
-      character_id: 'kiwi-beginner',
+      difficulty_level: null,
+      character_id: null,
       email_verified: false,
       created_at: new Date(),
       updated_at: new Date()

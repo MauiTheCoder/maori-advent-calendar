@@ -63,14 +63,34 @@ export default function Activity() {
       hasProfile: !!profile, 
       day,
       userId: user?.uid,
-      userEmail: user?.email
+      userEmail: user?.email,
+      profile: profile ? {
+        currentDay: profile.current_day,
+        difficulty: profile.difficulty_level,
+        character: profile.character_id
+      } : null
     })
-    if (!loading && !isAuthenticated) {
+    
+    // Only redirect after loading is complete
+    if (loading) return
+    
+    if (!isAuthenticated) {
       console.log('❌ Redirecting to home - not authenticated')
       router.push('/')
-    } else if (!loading && isAuthenticated && !profile) {
+      return
+    }
+    
+    if (!profile) {
       console.log('❌ Redirecting to dashboard - missing profile')
       router.push('/dashboard')
+      return
+    }
+
+    // Check if user needs to complete setup (character selection)
+    if (!profile.character_id) {
+      console.log('❌ Redirecting to dashboard - incomplete setup')
+      router.push('/dashboard')
+      return
     }
   }, [loading, isAuthenticated, router, profile, day, user])
 
@@ -85,7 +105,7 @@ export default function Activity() {
     )
   }
 
-  if (!isAuthenticated || !profile) {
+  if (!isAuthenticated || !profile || !profile.character_id) {
     return null
   }
 

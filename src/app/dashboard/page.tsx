@@ -22,19 +22,13 @@ export default function Dashboard() {
   }
 
   const needsCharacterSelection = !profile?.character_id
-  const needsDifficultySelection = profile?.character_id && !profile?.difficulty_level
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
       router.push('/')
       return
     }
-
-    // Redirect to difficulty selection if user has character but no difficulty set
-    if (!loading && isAuthenticated && profile && needsDifficultySelection && !needsCharacterSelection) {
-      router.push('/difficulty-selection')
-    }
-  }, [loading, isAuthenticated, profile, needsDifficultySelection, needsCharacterSelection, router])
+  }, [loading, isAuthenticated, router])
 
   if (loading) {
     return (
