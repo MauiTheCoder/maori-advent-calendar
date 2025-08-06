@@ -54,10 +54,13 @@ export function useAuth() {
   const loadUserData = async (firebaseUser: FirebaseUser) => {
     try {
       // Get user profile from Firestore
-      const profile = await userProfile.get(firebaseUser.uid)
+      let profile = await userProfile.get(firebaseUser.uid)
 
       if (!profile) {
-        throw new Error('User profile not found')
+        console.log('🔧 User profile not found, creating one...')
+        // Auto-create missing profile
+        const { ensureUserProfile } = await import('@/lib/firebase-seed')
+        profile = await ensureUserProfile(firebaseUser.uid, firebaseUser.email!, firebaseUser.displayName || undefined)
       }
 
       // Update email verification status

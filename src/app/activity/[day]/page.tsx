@@ -26,10 +26,28 @@ interface ActivityContent {
 }
 
 export default function Activity() {
-  const { isAuthenticated, user, profile, character, updateProfile } = useAuth()
+  const { isAuthenticated, user, profile, character, updateProfile, loading } = useAuth()
   const router = useRouter()
   const params = useParams()
   const day = parseInt(params.day as string)
+
+  // Validate day parameter
+  if (isNaN(day) || day < 1 || day > 30) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <h2 className="text-2xl font-bold">Invalid Day</h2>
+          <p className="text-muted-foreground">Please select a valid day between 1 and 30.</p>
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="px-4 py-2 bg-primary text-primary-foreground rounded"
+          >
+            Return to Dashboard
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   const [currentStep, setCurrentStep] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
@@ -39,10 +57,33 @@ export default function Activity() {
   const [activityCompleted, setActivityCompleted] = useState(false)
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    console.log('🎯 Activity page state:', { 
+      loading, 
+      isAuthenticated, 
+      hasProfile: !!profile, 
+      day,
+      userId: user?.uid,
+      userEmail: user?.email
+    })
+    if (!loading && !isAuthenticated) {
+      console.log('❌ Redirecting to home - not authenticated')
       router.push('/')
+    } else if (!loading && isAuthenticated && !profile) {
+      console.log('❌ Redirecting to dashboard - missing profile')
+      router.push('/dashboard')
     }
-  }, [isAuthenticated, router])
+  }, [loading, isAuthenticated, router, profile, day, user])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 flex items-center justify-center">
+        <div className="flex items-center space-x-4">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-lg">Loading your cultural journey...</span>
+        </div>
+      </div>
+    )
+  }
 
   if (!isAuthenticated || !profile) {
     return null

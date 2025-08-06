@@ -154,8 +154,12 @@ export default function Journey() {
   }
 
   const startActivity = () => {
+    console.log('🚀 Starting activity for day:', selectedDay)
     if (selectedDay) {
+      console.log('📍 Navigating to:', `/activity/${selectedDay}`)
       router.push(`/activity/${selectedDay}`)
+    } else {
+      console.error('❌ No selectedDay found')
     }
   }
 

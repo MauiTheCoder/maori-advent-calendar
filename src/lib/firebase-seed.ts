@@ -2,6 +2,31 @@ import { collection, doc, setDoc, writeBatch, getDocs, query, limit, deleteDoc }
 import { db } from './firebase'
 import { Character, Activity } from './firebase-auth'
 
+// Function to create a user profile if missing
+export async function ensureUserProfile(userId: string, email: string, displayName?: string) {
+  try {
+    const userDocRef = doc(db, 'users', userId)
+    const userProfile = {
+      email: email,
+      full_name: displayName || 'User',
+      current_day: 1,
+      total_points: 0,
+      difficulty_level: 'beginner',
+      character_id: 'kiwi-beginner',
+      email_verified: false,
+      created_at: new Date(),
+      updated_at: new Date()
+    }
+    
+    await setDoc(userDocRef, userProfile, { merge: true })
+    console.log('✅ User profile created/updated for:', email)
+    return userProfile
+  } catch (error) {
+    console.error('❌ Error creating user profile:', error)
+    throw error
+  }
+}
+
 // Character seed data - 3 Kaitiaki Guardians with difficulty levels
 const seedCharacters: Omit<Character, 'id' | 'created_at'>[] = [
   {
