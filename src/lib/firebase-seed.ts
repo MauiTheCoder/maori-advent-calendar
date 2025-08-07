@@ -1,21 +1,23 @@
 import { collection, doc, setDoc, writeBatch, getDocs, query, limit, deleteDoc } from 'firebase/firestore'
 import { db } from './firebase'
-import { Character, Activity } from './firebase-auth'
+import { Character, Activity, User } from './firebase-auth'
 
 // Function to create a user profile if missing
-export async function ensureUserProfile(userId: string, email: string, displayName?: string) {
+export async function ensureUserProfile(userId: string, email: string, displayName?: string): Promise<User> {
   try {
     const userDocRef = doc(db, 'users', userId)
     const userProfile = {
+      id: userId,
       email: email,
-      full_name: displayName || 'User',
+      name: displayName || 'User',
       current_day: 1,
       total_points: 0,
-      difficulty_level: null,
+      difficulty_level: null as 'beginner' | 'intermediate' | 'advanced' | null,
       character_id: null,
       email_verified: false,
-      created_at: new Date(),
-      updated_at: new Date()
+      achievements: [] as string[],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     }
     
     await setDoc(userDocRef, userProfile, { merge: true })
