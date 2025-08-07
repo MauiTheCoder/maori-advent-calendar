@@ -34,7 +34,7 @@ export interface User {
   id: string
   email: string
   name: string
-  character_id?: string
+  character_id?: string | null
   difficulty_level?: 'beginner' | 'intermediate' | 'advanced' | null
   current_day: number
   total_points: number

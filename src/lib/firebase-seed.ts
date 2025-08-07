@@ -12,7 +12,7 @@ export async function ensureUserProfile(userId: string, email: string, displayNa
       name: displayName || 'User',
       current_day: 1,
       total_points: 0,
-      difficulty_level: null as 'beginner' | 'intermediate' | 'advanced' | null,
+      difficulty_level: null,
       character_id: null,
       email_verified: false,
       achievements: [] as string[],
