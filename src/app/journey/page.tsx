@@ -70,7 +70,7 @@ export default function Journey() {
     })
   }
 
-  const getDayTitle = (day: number, difficulty?: string): string => {
+  const getDayTitle = (day: number, difficulty?: string | null): string => {
     const beginnerTitles = [
       "Kia Ora", "Numbers 1-5", "My Whānau", "Hongi Greeting", "Simple Pōwhiri",
       "Basic Colors", "Kai Māori", "Simple Haka", "Family Tree", "Nature Walk",
@@ -112,7 +112,7 @@ export default function Journey() {
     return 20
   }
 
-  const getDifficultyMultiplier = (difficulty?: string): number => {
+  const getDifficultyMultiplier = (difficulty?: string | null): number => {
     switch (difficulty) {
       case 'beginner': return 1
       case 'intermediate': return 1.5
@@ -121,7 +121,7 @@ export default function Journey() {
     }
   }
 
-  const isActivityUnlocked = (day: number, currentDay: number, difficulty?: string): boolean => {
+  const isActivityUnlocked = (day: number, currentDay: number, difficulty?: string | null): boolean => {
     // Base unlock logic: current day and before
     if (day <= currentDay) return true
 
