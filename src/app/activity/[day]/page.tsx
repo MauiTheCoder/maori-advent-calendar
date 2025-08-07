@@ -31,8 +31,18 @@ export default function Activity() {
   const params = useParams()
   const day = parseInt(params.day as string)
 
-  // Validate day parameter
-  if (isNaN(day) || day < 1 || day > 30) {
+  // All hooks must be called before any early returns
+  const [currentStep, setCurrentStep] = useState(0)
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [showResults, setShowResults] = useState(false)
+  const [score, setScore] = useState(0)
+  const [startTime] = useState(Date.now())
+  const [activityCompleted, setActivityCompleted] = useState(false)
+
+  // Validate day parameter after hooks
+  const isValidDay = !isNaN(day) && day >= 1 && day <= 30
+
+  if (!isValidDay) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 flex items-center justify-center">
         <div className="text-center space-y-4">
@@ -48,13 +58,6 @@ export default function Activity() {
       </div>
     )
   }
-
-  const [currentStep, setCurrentStep] = useState(0)
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
-  const [showResults, setShowResults] = useState(false)
-  const [score, setScore] = useState(0)
-  const [startTime] = useState(Date.now())
-  const [activityCompleted, setActivityCompleted] = useState(false)
 
   useEffect(() => {
     console.log('🎯 Activity page state:', { 
