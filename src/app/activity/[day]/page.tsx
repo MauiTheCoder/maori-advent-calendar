@@ -42,24 +42,10 @@ export default function Activity() {
   // Validate day parameter after hooks
   const isValidDay = !isNaN(day) && day >= 1 && day <= 30
 
-  if (!isValidDay) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold">Invalid Day</h2>
-          <p className="text-muted-foreground">Please select a valid day between 1 and 30.</p>
-          <button
-            onClick={() => router.push('/dashboard')}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded"
-          >
-            Return to Dashboard
-          </button>
-        </div>
-      </div>
-    )
-  }
-
   useEffect(() => {
+    // Don't run effect if day is invalid
+    if (!isValidDay) return
+    
     console.log('🎯 Activity page state:', { 
       loading, 
       isAuthenticated, 
@@ -95,7 +81,24 @@ export default function Activity() {
       router.push('/dashboard')
       return
     }
-  }, [loading, isAuthenticated, router, profile, day, user])
+  }, [loading, isAuthenticated, router, profile, day, user, isValidDay])
+
+  if (!isValidDay) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <h2 className="text-2xl font-bold">Invalid Day</h2>
+          <p className="text-muted-foreground">Please select a valid day between 1 and 30.</p>
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="px-4 py-2 bg-primary text-primary-foreground rounded"
+          >
+            Return to Dashboard
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   if (loading) {
     return (
