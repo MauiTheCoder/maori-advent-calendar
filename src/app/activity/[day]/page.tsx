@@ -119,150 +119,1361 @@ export default function Activity() {
     const difficulty = profile?.difficulty_level || 'beginner'
     const activities: Record<string, Record<number, ActivityContent>> = {
       beginner: {
-      1: {
-        title: "Kia Ora - First Greetings",
-        description: "Learn the most important Māori greeting and its cultural significance",
-        type: "learning",
-        content: {
-          cultural_context: "Kia ora is more than just 'hello' - it means 'be well' or 'be healthy'. It's a wish for wellbeing.",
-          facts: [
-            "Kia ora literally translates to 'be well' or 'be healthy'",
-            "It can be used for hello, goodbye, thank you, and good luck",
-            "The response to 'Kia ora' is also 'Kia ora'",
-            "It comes from the word 'ora' meaning life, health, or vitality"
-          ],
-          story: "When Captain James Cook first arrived in Aotearoa, Māori greeted his crew with 'Kia ora!' - a blessing of health and wellbeing for the strangers. This beautiful tradition continues today, making New Zealand one of the friendliest places on Earth."
+        1: {
+          title: "Pronunciation Practice",
+          description: "Review your pronunciation using the guides on the Mahuru website. Practice pronouncing different Māori place names correctly.",
+          type: "learning",
+          content: {
+            cultural_context: "Correct pronunciation of te reo Māori shows respect and helps maintain the integrity of the language.",
+            facts: [
+              "Visit the Mahuru website for pronunciation guides",
+              "Practice Māori place names in your area",
+              "Focus on vowel sounds: a, e, i, o, u",
+              "Listen to native speakers whenever possible"
+            ]
+          },
+          points: 10
         },
-        points: 10
+        2: {
+          title: "Greeting Everyone",
+          description: "Greet everyone you encounter today in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Using Māori greetings in daily life helps normalize the language and shows cultural respect.",
+            facts: [
+              "Use 'Kia ora' throughout the day",
+              "Try 'Morena' for good morning",
+              "Practice with whānau, friends, and colleagues",
+              "Notice people's positive responses"
+            ]
+          },
+          points: 10
+        },
+        3: {
+          title: "Saying Goodbye",
+          description: "Practice saying goodbye in te reo Māori today.",
+          type: "learning",
+          content: {
+            cultural_context: "Māori farewells carry deep meaning about ongoing connections and care for others.",
+            facts: [
+              "Use 'Kia ora' as goodbye",
+              "Try 'Hei konā' or 'Hei konei'",
+              "Practice 'Kā kite' for 'see you later'",
+              "Use farewells with intention and care"
+            ]
+          },
+          points: 10
+        },
+        4: {
+          title: "Introduction Practice",
+          description: "Learn how to introduce yourself in te reo Māori: your name, where you're from, and where you live now.",
+          type: "learning",
+          content: {
+            cultural_context: "Proper introductions in Māori culture establish whakapapa (connections) and place.",
+            facts: [
+              "Start with 'Ko [name] ahau' (I am [name])",
+              "Say 'Nō [place] ahau' (I am from [place])",
+              "Use 'Kei [place] ahau e noho nei' (I live at [place])",
+              "Practice your full pepeha structure"
+            ]
+          },
+          points: 10
+        },
+        5: {
+          title: "Home Vocabulary",
+          description: "Find the kupu Māori for 5 objects at home and use those kupu throughout the day.",
+          type: "learning",
+          content: {
+            cultural_context: "Learning everyday vocabulary helps integrate te reo Māori into daily life naturally.",
+            facts: [
+              "Choose common objects you use daily",
+              "Practice saying the kupu aloud",
+              "Use sticky notes to label objects",
+              "Share new kupu with your whānau"
+            ]
+          },
+          points: 10
+        },
+        6: {
+          title: "Health Check-ins",
+          description: "Ask someone how they're doing in te reo Māori and learn 3 different responses that you could use when asked.",
+          type: "learning",
+          content: {
+            cultural_context: "Checking on others' wellbeing is central to Māori values of manaakitanga.",
+            facts: [
+              "Ask 'Kei a koe?' (How are you?)",
+              "Learn responses like 'Kei te pai' (I'm good)",
+              "Practice 'Kāore he raru' (No worries/problems)",
+              "Try 'Kei te reka' (I'm sweet/good)"
+            ]
+          },
+          points: 10
+        },
+        7: {
+          title: "Workplace Labels",
+          description: "Label 5 objects at work with their kupu Māori and teach them to your coworkers.",
+          type: "learning",
+          content: {
+            cultural_context: "Sharing te reo Māori knowledge helps create inclusive environments and builds cultural awareness.",
+            facts: [
+              "Choose objects everyone uses",
+              "Write clear labels with pronunciation",
+              "Explain meanings to interested colleagues",
+              "Encourage others to use the kupu"
+            ]
+          },
+          points: 10
+        },
+        8: {
+          title: "Email Phrase",
+          description: "Use one new reo Māori phrase in an email or message today.",
+          type: "learning",
+          content: {
+            cultural_context: "Incorporating te reo Māori in written communication helps normalize its use in professional settings.",
+            facts: [
+              "Start with simple greetings",
+              "Use 'Ngā mihi' for 'regards'",
+              "Try 'Kia pai tō mutu wiki' (have a good weekend)",
+              "Include pronunciation guides if helpful"
+            ]
+          },
+          points: 10
+        },
+        9: {
+          title: "Friend Introduction",
+          description: "Practice introducing a friend or family member.",
+          type: "learning",
+          content: {
+            cultural_context: "Introducing others properly shows respect and helps build connections within communities.",
+            facts: [
+              "Use 'Kō [name] tēnei' (This is [name])",
+              "Share their place connections if appropriate",
+              "Practice with whānau members",
+              "Include relationship connections"
+            ]
+          },
+          points: 10
+        },
+        10: {
+          title: "Shopping List",
+          description: "Translate your supermarket shopping list into te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Learning food vocabulary connects us to traditional Māori kai and modern shopping practices.",
+            facts: [
+              "Learn common food items",
+              "Practice fruit and vegetable names",
+              "Include traditional kai when possible",
+              "Use the list while shopping"
+            ]
+          },
+          points: 10
+        },
+        11: {
+          title: "Weather Description",
+          description: "Learn how to describe today's weather in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Weather discussions are common social interactions and connect us to the natural world.",
+            facts: [
+              "Learn 'He rā pai' (nice day)",
+              "Practice 'He ua' (it's raining)",
+              "Try 'He makariri' (it's cold)",
+              "Use 'He wera' (it's hot)"
+            ]
+          },
+          points: 10
+        },
+        12: {
+          title: "Simple Pepeha",
+          description: "Learn how to compose and share a simple pepeha.",
+          type: "learning",
+          content: {
+            cultural_context: "Pepeha establish your identity and connections to place, providing a foundation for relationships.",
+            facts: [
+              "Include your maunga (mountain)",
+              "Name your awa (river)",
+              "State your iwi or tribal connections",
+              "Practice sharing with others"
+            ]
+          },
+          points: 10
+        },
+        13: {
+          title: "Meeting Karakia",
+          description: "Write out a simple karakia that you can say at the start of meetings, and practice saying it in all the hui you have today.",
+          type: "learning",
+          content: {
+            cultural_context: "Karakia bring spiritual protection and intention to gatherings, creating sacred space.",
+            facts: [
+              "Keep it simple and respectful",
+              "Practice pronunciation beforehand",
+              "Explain the purpose to others",
+              "Use with genuine intention"
+            ]
+          },
+          points: 10
+        },
+        14: {
+          title: "Multiple Greetings",
+          description: "Learn how to say hello to one person, two people, and three or more people. Practice each today.",
+          type: "learning",
+          content: {
+            cultural_context: "Different greetings for different numbers of people show understanding of Māori grammar structure.",
+            facts: [
+              "Use 'Kia ora' for one person",
+              "Say 'Kia ora kōrua' for two people",
+              "Use 'Kia ora koutou' for three or more",
+              "Practice in different social situations"
+            ]
+          },
+          points: 10
+        },
+        15: {
+          title: "Waiata Vocabulary",
+          description: "Listen to a waiata in te reo Māori and write down all the kupu you recognise.",
+          type: "learning",
+          content: {
+            cultural_context: "Waiata are repositories of language, culture, and history, teaching through music and rhythm.",
+            facts: [
+              "Choose a well-known waiata",
+              "Listen multiple times",
+              "Look up unfamiliar words",
+              "Try to understand the overall message"
+            ]
+          },
+          points: 10
+        },
+        16: {
+          title: "Learning Partner",
+          description: "Find another person in your life who is learning te reo Māori and share your 'why' with each other.",
+          type: "learning",
+          content: {
+            cultural_context: "Sharing your motivation strengthens commitment and builds supportive learning communities.",
+            facts: [
+              "Be honest about your reasons",
+              "Listen actively to their story",
+              "Support each other's journey",
+              "Create accountability partnerships"
+            ]
+          },
+          points: 10
+        },
+        17: {
+          title: "Reading Practice",
+          description: "Read a book that features kupu Māori. Even if it's for children, kei te pai!",
+          type: "learning",
+          content: {
+            cultural_context: "Reading helps internalize language patterns and cultural concepts through storytelling.",
+            facts: [
+              "Start with your comfort level",
+              "Children's books have great foundations",
+              "Focus on understanding over perfection",
+              "Enjoy the learning process"
+            ]
+          },
+          points: 10
+        },
+        18: {
+          title: "Counting Practice",
+          description: "Learn to count to 20 in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Numbers are fundamental building blocks for more complex language use and daily communication.",
+            facts: [
+              "Master 1-10 first: tahi, rua, toru, whā, rima, ono, whitu, waru, iwa, tekau",
+              "Learn the teens pattern with 'tekau mā'",
+              "Practice counting objects around you",
+              "Use numbers in daily activities"
+            ]
+          },
+          points: 10
+        },
+        19: {
+          title: "Days of the Week",
+          description: "Write down the days of the week in te reo Māori and practice using them today.",
+          type: "learning",
+          content: {
+            cultural_context: "Time words help organize daily life and show integration of te reo Māori into routine activities.",
+            facts: [
+              "Rāhina (Monday) through Rātapu (Sunday)",
+              "Use in conversations about plans",
+              "Practice with calendar activities",
+              "Include in scheduling discussions"
+            ]
+          },
+          points: 10
+        },
+        20: {
+          title: "Marae Vocabulary",
+          description: "Learn the ingoa Māori (Māori names) for all the different parts of a marae.",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding marae layout shows respect for sacred spaces and cultural protocols.",
+            facts: [
+              "Learn whare hui, whare kai, ātea",
+              "Understand the wharenui significance",
+              "Know where different activities happen",
+              "Respect the tapu and noa spaces"
+            ]
+          },
+          points: 10
+        },
+        21: {
+          title: "Question Practice",
+          description: "Practice asking and answering, 'He aha tēnei/tēnā/tērā?'",
+          type: "learning",
+          content: {
+            cultural_context: "Asking questions shows curiosity and willingness to learn, fundamental to cultural growth.",
+            facts: [
+              "He aha tēnei = What is this (here)?",
+              "He aha tēnā = What is that (near you)?",
+              "He aha tērā = What is that (over there)?",
+              "Practice with pointing and objects"
+            ]
+          },
+          points: 10
+        },
+        22: {
+          title: "Language History",
+          description: "Learn about the history of te reo Māori in Aotearoa, and why the revitalisation movement started.",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding language history helps appreciate current revitalization efforts and their importance.",
+            facts: [
+              "Te reo was once banned in schools",
+              "Language decline occurred through colonization",
+              "Revitalization began in the 1970s-80s",
+              "Current efforts focus on whānau transmission"
+            ]
+          },
+          points: 10
+        },
+        23: {
+          title: "Movement Sentences",
+          description: "Learn how to tell others where you're going using the sentence structure 'Kei te haere ahau...' Tell 3 people throughout the day where you're headed!",
+          type: "learning",
+          content: {
+            cultural_context: "Sharing your movements keeps whānau informed and maintains social connections.",
+            facts: [
+              "Kei te haere ahau ki te... (I'm going to...)",
+              "Practice with common destinations",
+              "Use with colleagues and whānau",
+              "Build confidence in conversation"
+            ]
+          },
+          points: 10
+        },
+        24: {
+          title: "Meal Karakia",
+          description: "Write out a simple karakia to say before meals. Say it with your coworkers, whānau, or friends at each meal today.",
+          type: "learning",
+          content: {
+            cultural_context: "Meal karakia acknowledge the source of our kai and bring whānau together in gratitude.",
+            facts: [
+              "Keep it simple and meaningful",
+              "Include gratitude for the food",
+              "Practice pronunciation clearly",
+              "Share the meaning with others"
+            ]
+          },
+          points: 10
+        },
+        25: {
+          title: "Resource Sharing",
+          description: "Find three new resources – books, podcasts, TV shows, etc – to support you on your reo journey. Share them with a friend.",
+          type: "learning",
+          content: {
+            cultural_context: "Sharing resources builds learning communities and supports collective language growth.",
+            facts: [
+              "Look for diverse resource types",
+              "Consider your learning style",
+              "Share recommendations actively",
+              "Build your resource library"
+            ]
+          },
+          points: 10
+        },
+        26: {
+          title: "Kīwaha Practice",
+          description: "Practice using a kīwaha in conversation today. Check out the kīwaha videos on the Mahuru Māori website for inspiration.",
+          type: "learning",
+          content: {
+            cultural_context: "Kīwaha are cultural expressions that convey deeper meanings and cultural values.",
+            facts: [
+              "Start with simple, appropriate kīwaha",
+              "Understand the cultural context",
+              "Use with native speakers when possible",
+              "Learn from the Mahuru website videos"
+            ]
+          },
+          points: 10
+        },
+        27: {
+          title: "Teaching Others",
+          description: "Teach a new kupu Māori to three different people today.",
+          type: "learning",
+          content: {
+            cultural_context: "Teaching others reinforces your own learning while spreading language knowledge through communities.",
+            facts: [
+              "Choose useful, relevant kupu",
+              "Include pronunciation guidance",
+              "Share the cultural context",
+              "Encourage others to use the words"
+            ]
+          },
+          points: 10
+        },
+        28: {
+          title: "Whakataukī Learning",
+          description: "Learn one whakataukī and explain it to a friend or whānau member.",
+          type: "learning",
+          content: {
+            cultural_context: "Whakataukī contain cultural wisdom and values, passed down through generations.",
+            facts: [
+              "Choose a meaningful whakataukī",
+              "Understand the deeper meaning",
+              "Practice pronunciation carefully",
+              "Share the wisdom appropriately"
+            ]
+          },
+          points: 10
+        },
+        29: {
+          title: "Coffee Orders",
+          description: "Order your coffee in te reo Māori today – or, if you make it yourself, practice describing it while you're making it.",
+          type: "learning",
+          content: {
+            cultural_context: "Using te reo Māori in daily transactions normalizes the language in commercial settings.",
+            facts: [
+              "Learn coffee vocabulary",
+              "Practice ordering phrases",
+              "Be patient with service staff",
+              "Explain if asked about the language"
+            ]
+          },
+          points: 10
+        },
+        30: {
+          title: "Future Planning",
+          description: "Post in the Mahuru Māori Facebook group how you're going to continue to grow your reo after Mahuru – or, if you're not on social media, message a friend or whānau member to help keep you accountable.",
+          type: "learning",
+          content: {
+            cultural_context: "Committing to continued learning ensures language growth continues beyond formal challenges.",
+            facts: [
+              "Set realistic continuing goals",
+              "Find accountability partners",
+              "Plan specific learning activities",
+              "Celebrate your progress so far"
+            ]
+          },
+          points: 10
+        }
       },
-      2: {
-        title: "Māori Numbers Quiz",
-        description: "Test your knowledge of Māori numbers 1-10",
-        type: "quiz",
-        content: {
-          question: "What is the Māori word for 'three'?",
-          options: ["tahi", "rua", "toru", "whā"],
-          correct: 2,
-          explanation: "Toru means 'three' in Māori. The numbers 1-5 are: tahi (1), rua (2), toru (3), whā (4), rima (5)."
+      intermediate: {
+        1: {
+          title: "5-Minute Te Reo Time",
+          description: "Schedule a 5-minute slot today where you will only speak te reo Māori. Don't be afraid to use the kaupapa card on the Mahuru website to let others know what you're doing.",
+          type: "learning",
+          content: {
+            cultural_context: "Immersive practice builds fluency and confidence in using te reo Māori continuously.",
+            facts: [
+              "Set a specific time for your 5-minute session",
+              "Use the Mahuru kaupapa card to explain to others",
+              "Don't worry about mistakes - focus on communication",
+              "Gradually increase the time as you get more confident"
+            ]
+          },
+          points: 15
         },
-        points: 10
+        2: {
+          title: "Local Place Names",
+          description: "Learn 3 new Māori place names around your rohe (region). Share them with a friend.",
+          type: "learning",
+          content: {
+            cultural_context: "Place names carry historical and cultural significance, connecting us to the land and its stories.",
+            facts: [
+              "Research the meanings behind the names",
+              "Learn correct pronunciation",
+              "Share the stories with others",
+              "Use them in daily conversation"
+            ]
+          },
+          points: 15
+        },
+        3: {
+          title: "Karakia Learning",
+          description: "Write out a karakia you don't know yet and commit to learning it over the next week.",
+          type: "learning",
+          content: {
+            cultural_context: "Learning new karakia expands your spiritual vocabulary and cultural understanding.",
+            facts: [
+              "Choose an appropriate karakia for your context",
+              "Write it out clearly with pronunciation notes",
+              "Practice daily over the week",
+              "Understand its meaning and purpose"
+            ]
+          },
+          points: 15
+        },
+        4: {
+          title: "Marae Protocols",
+          description: "Share 3 'do's and don't's' at the marae in te reo Māori with a friend, whānau member, or coworker.",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding and sharing marae protocols helps maintain cultural practices and educates others.",
+            facts: [
+              "Focus on respectful behavior",
+              "Explain the reasoning behind protocols",
+              "Use appropriate te reo Māori terms",
+              "Share with cultural sensitivity"
+            ]
+          },
+          points: 15
+        },
+        5: {
+          title: "Kīwaha in Practice",
+          description: "Practice using a kīwaha in conversation today. Check out the kīwaha videos on the Mahuru Māori website for inspiration.",
+          type: "learning",
+          content: {
+            cultural_context: "Kīwaha add depth and cultural authenticity to your te reo Māori expression.",
+            facts: [
+              "Choose contextually appropriate kīwaha",
+              "Practice pronunciation until natural",
+              "Use with understanding of cultural meaning",
+              "Learn from native speakers when possible"
+            ]
+          },
+          points: 15
+        },
+        6: {
+          title: "Tea/Coffee Instructions",
+          description: "Write instructions for preparing your perfect cup of tea or coffee. Encourage your coworkers to do the same and keep them together in the kitchen.",
+          type: "learning",
+          content: {
+            cultural_context: "Sharing practical instructions in te reo Māori demonstrates its utility in everyday activities.",
+            facts: [
+              "Write clear, step-by-step instructions",
+              "Use kitchen and preparation vocabulary",
+              "Encourage workplace participation",
+              "Create a resource for others"
+            ]
+          },
+          points: 15
+        },
+        7: {
+          title: "Tense Markers Practice",
+          description: "Describe your day in 6 sentences, each using a different tohu wā (tense marker): kei te, e __ ana, kua, i, i te, ka.",
+          type: "learning",
+          content: {
+            cultural_context: "Mastering tense markers allows for more precise and grammatically correct expression.",
+            facts: [
+              "Kei te = currently happening",
+              "E __ ana = ongoing action",
+              "Kua = completed action",
+              "I = past action, Ka = future action, I te = past continuous"
+            ]
+          },
+          points: 15
+        },
+        8: {
+          title: "Te Reo Group Chat",
+          description: "Start a reo Māori group chat. See how long you and some friends or whānau can communicate using only te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Digital spaces for te reo Māori help normalize its use in modern communication.",
+            facts: [
+              "Invite enthusiastic participants",
+              "Set encouraging group expectations",
+              "Support each other's efforts",
+              "Use translation tools if needed"
+            ]
+          },
+          points: 15
+        },
+        9: {
+          title: "Help Phrases",
+          description: "Write down 4 helpful reo Māori phrases that you can use when you need help on your reo journey. (For example: I don't know, I don't understand, please say that again)",
+          type: "learning",
+          content: {
+            cultural_context: "Having help phrases ready removes barriers to engagement and shows respect for the learning process.",
+            facts: [
+              "Kāore au e mōhio = I don't know",
+              "Kāore au e mārama = I don't understand",
+              "Me kōrero anō koe = Please say that again",
+              "Keep these phrases handy"
+            ]
+          },
+          points: 15
+        },
+        10: {
+          title: "10-Minute Te Reo Time",
+          description: "Schedule a 10-minute slot today where you will only speak te reo Māori. Don't be afraid to use the kaupapa card on the Mahuru website to let others know what you're doing.",
+          type: "learning",
+          content: {
+            cultural_context: "Extended immersive practice builds greater confidence and natural flow in conversation.",
+            facts: [
+              "Double your previous time commitment",
+              "Plan conversation topics beforehand",
+              "Use the kaupapa card for support",
+              "Focus on communication over perfection"
+            ]
+          },
+          points: 15
+        },
+        11: {
+          title: "Vocabulary Replacement",
+          description: "Make a list of 5 kupu Māori you use regularly and see if you can replace them with a new kupu.",
+          type: "learning",
+          content: {
+            cultural_context: "Expanding vocabulary prevents overuse of basic words and develops more sophisticated expression.",
+            facts: [
+              "Identify your most common kupu",
+              "Find appropriate alternatives",
+              "Practice using new vocabulary",
+              "Build more nuanced expression"
+            ]
+          },
+          points: 15
+        },
+        12: {
+          title: "Treasure Hunt Instructions",
+          description: "Create a 'treasure hunt' by writing instructions in te reo Māori for a friend to reach a destination of your choice. Trade instructions and see who can reach their 'treasure' first!",
+          type: "learning",
+          content: {
+            cultural_context: "Creative activities make language learning fun while building practical communication skills.",
+            facts: [
+              "Use directional vocabulary",
+              "Include landmarks and reference points",
+              "Make it challenging but achievable",
+              "Enjoy the interactive learning"
+            ]
+          },
+          points: 15
+        },
+        13: {
+          title: "Whakataukī Meaning",
+          description: "Learn a new whakataukī and describe what it means in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding and explaining whakataukī deepens cultural knowledge and expression skills.",
+            facts: [
+              "Choose a meaningful whakataukī",
+              "Research its origins and context",
+              "Practice explaining in te reo Māori",
+              "Share the cultural wisdom appropriately"
+            ]
+          },
+          points: 15
+        },
+        14: {
+          title: "News Summary",
+          description: "Read a news article written in te reo Māori and summarise it in your own words.",
+          type: "learning",
+          content: {
+            cultural_context: "Reading and summarizing news develops comprehension and expression skills with current content.",
+            facts: [
+              "Choose articles at your level",
+              "Focus on main ideas",
+              "Practice summarizing skills",
+              "Build current affairs vocabulary"
+            ]
+          },
+          points: 15
+        },
+        15: {
+          title: "Photo Captions",
+          description: "Pick 3 photos (from a book, from the internet, or from your home) and write a caption for each in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Describing images in te reo Māori builds descriptive vocabulary and observational skills.",
+            facts: [
+              "Choose diverse, interesting photos",
+              "Use descriptive language",
+              "Include emotions and actions",
+              "Practice visual storytelling"
+            ]
+          },
+          points: 15
+        },
+        16: {
+          title: "Negation Practice",
+          description: "Rewrite your 6 sentences from Day 7, negating each (using 'kāore').",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding negation patterns is essential for accurate and complete expression.",
+            facts: [
+              "Use 'kāore' appropriately with tenses",
+              "Practice negative sentence structure",
+              "Compare positive and negative forms",
+              "Build grammatical understanding"
+            ]
+          },
+          points: 15
+        },
+        17: {
+          title: "Walking Commentary",
+          description: "Take a short walk and describe your surroundings out loud in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Describing the natural world connects language learning to environmental awareness.",
+            facts: [
+              "Name what you see around you",
+              "Describe weather and natural features",
+              "Practice movement vocabulary",
+              "Connect with the environment"
+            ]
+          },
+          points: 15
+        },
+        18: {
+          title: "Regional Events",
+          description: "Find an event in your region that promotes te reo Māori and describe it to a friend in your own words.",
+          type: "learning",
+          content: {
+            cultural_context: "Engaging with local Māori events builds community connections and cultural awareness.",
+            facts: [
+              "Research local cultural events",
+              "Practice event description vocabulary",
+              "Share opportunities with others",
+              "Build community connections"
+            ]
+          },
+          points: 15
+        },
+        19: {
+          title: "Te Reo Email",
+          description: "Write a short email or message to a friend using only te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Written communication in te reo Māori demonstrates confidence and cultural commitment.",
+            facts: [
+              "Start with simple, clear messages",
+              "Use appropriate formal/informal language",
+              "Include cultural greetings and closings",
+              "Build written confidence"
+            ]
+          },
+          points: 15
+        },
+        20: {
+          title: "20-Minute Te Reo Time",
+          description: "Schedule a 20-minute slot today where you will only speak te reo Māori. Don't be afraid to use the kaupapa card on the Mahuru website to let others know what you're doing.",
+          type: "learning",
+          content: {
+            cultural_context: "Extended practice sessions build stamina and natural flow in te reo Māori conversation.",
+            facts: [
+              "Plan conversation topics in advance",
+              "Use the kaupapa card for explanation",
+              "Focus on maintaining communication",
+              "Build extended speaking confidence"
+            ]
+          },
+          points: 15
+        },
+        21: {
+          title: "Home/Workplace Tour",
+          description: "Give a guided tour of your home or workplace to a friend, whānau member, or coworker in te reo Māori as if they were a visitor.",
+          type: "learning",
+          content: {
+            cultural_context: "Giving tours demonstrates hospitality while practicing descriptive and directional language.",
+            facts: [
+              "Prepare room and object vocabulary",
+              "Practice directional phrases",
+              "Include cultural context where appropriate",
+              "Build hosting confidence"
+            ]
+          },
+          points: 15
+        },
+        22: {
+          title: "Waiata Description",
+          description: "Listen to a new waiata Māori and describe what it's about to a friend or whānau member.",
+          type: "learning",
+          content: {
+            cultural_context: "Analyzing waiata develops listening skills while deepening cultural understanding.",
+            facts: [
+              "Listen multiple times for understanding",
+              "Research the waiata's background",
+              "Practice descriptive vocabulary",
+              "Share cultural knowledge"
+            ]
+          },
+          points: 15
+        },
+        23: {
+          title: "Persuasive Kōrero",
+          description: "Write a short persuasive kōrero in te reo Māori about why people in Aotearoa should learn the language. Share it with a friend.",
+          type: "learning",
+          content: {
+            cultural_context: "Advocating for te reo Māori builds persuasive skills while promoting language revitalization.",
+            facts: [
+              "Use compelling arguments",
+              "Include cultural and practical benefits",
+              "Practice persuasive language structures",
+              "Share with passion and respect"
+            ]
+          },
+          points: 15
+        },
+        24: {
+          title: "Te Reo To-Do List",
+          description: "Write a to-do list in te reo Māori with at least 5 items on it, using new vocabulary you're learning in each item.",
+          type: "learning",
+          content: {
+            cultural_context: "Using te reo Māori for practical tasks integrates the language into daily life organization.",
+            facts: [
+              "Include diverse daily activities",
+              "Use action verbs and new vocabulary",
+              "Practice task-oriented language",
+              "Make it practical and useful"
+            ]
+          },
+          points: 15
+        },
+        25: {
+          title: "Household Narration",
+          description: "Narrate your actions out loud in te reo Māori as you do a chore around the house or marae.",
+          type: "learning",
+          content: {
+            cultural_context: "Narrating actions builds fluency while making routine tasks into learning opportunities.",
+            facts: [
+              "Describe each step of your actions",
+              "Use present tense markers",
+              "Include tool and process vocabulary",
+              "Practice natural flow"
+            ]
+          },
+          points: 15
+        },
+        26: {
+          title: "Passive Voice Practice",
+          description: "Rewrite your 6 sentences from Day 7 using rerehāngū (passive voice). If you used rerehāngū in your original sentences, change it to reremahi (active voice).",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding active and passive voice allows for more sophisticated grammatical expression.",
+            facts: [
+              "Practice voice transformation",
+              "Understand when to use each voice",
+              "Build grammatical flexibility",
+              "Compare different structures"
+            ]
+          },
+          points: 15
+        },
+        27: {
+          title: "Tongue Twister Mastery",
+          description: "Find a new whīwhiwhi (reo Māori tongue twister) and practice saying it out loud until you can do it without any pronunciation errors.",
+          type: "learning",
+          content: {
+            cultural_context: "Tongue twisters improve pronunciation accuracy and build confidence with difficult sound combinations.",
+            facts: [
+              "Start slowly and build speed",
+              "Focus on clear pronunciation",
+              "Practice until natural",
+              "Enjoy the pronunciation challenge"
+            ]
+          },
+          points: 15
+        },
+        28: {
+          title: "Social Media Translation",
+          description: "Translate an old social media post or message to a friend into te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Translating personal content helps adapt te reo Māori to modern digital communication.",
+            facts: [
+              "Choose meaningful personal content",
+              "Adapt cultural context appropriately",
+              "Use modern te reo Māori expressions",
+              "Practice digital communication skills"
+            ]
+          },
+          points: 15
+        },
+        29: {
+          title: "30-Minute Te Reo Time",
+          description: "Schedule a 30-minute slot today where you will only speak te reo Māori. Don't be afraid to use the kaupapa card on the Mahuru website to let others know what you're doing.",
+          type: "learning",
+          content: {
+            cultural_context: "Extended immersive practice develops true conversational fluency and confidence.",
+            facts: [
+              "Plan diverse conversation topics",
+              "Use available resources for support",
+              "Focus on communication over perfection",
+              "Celebrate your extended effort"
+            ]
+          },
+          points: 15
+        },
+        30: {
+          title: "Future Planning",
+          description: "Post in the Mahuru Māori Facebook group how you're going to continue to grow your reo after Mahuru – or, if you're not on social media, message a friend or whānau member to help keep you accountable.",
+          type: "learning",
+          content: {
+            cultural_context: "Committing to continued learning ensures language growth continues beyond formal challenges.",
+            facts: [
+              "Set realistic continuing goals",
+              "Find accountability partners",
+              "Plan specific learning activities",
+              "Celebrate your progress so far"
+            ]
+          },
+          points: 15
+        }
       },
-      3: {
-        title: "Te Whānau - The Family",
-        description: "Discover the importance of whānau (family) in Māori culture",
-        type: "story",
-        content: {
-          story: "In the time of our ancestors, there lived a young woman named Aroha who lived far from her whānau. One day, she felt lonely and lost. Her grandmother's spirit appeared and said, 'Child, remember - you are never alone. Your whānau stretches back to the beginning of time and forward to generations not yet born. We are all connected like the roots of the mighty kauri tree.' From that day, Aroha understood that whānau is not just blood relations, but all those who care for each other with aroha (love).",
-          cultural_context: "Whānau extends beyond immediate family to include extended family, close friends, and community. It represents interconnectedness and collective responsibility.",
-          facts: [
-            "Whānau includes parents, children, grandparents, aunts, uncles, and cousins",
-            "It can also include adopted family and close friends",
-            "Whānau provides support, guidance, and identity",
-            "The concept emphasizes collective wellbeing over individual success"
-          ]
+      advanced: {
+        1: {
+          title: "Kaupapa Brainstorming",
+          description: "Brainstorm a list of 5 ways to tell people who don't speak te reo Māori about the Mahuru Challenge kaupapa.",
+          type: "learning",
+          content: {
+            cultural_context: "Effectively communicating the value of te reo Māori challenges to non-speakers builds understanding and support.",
+            facts: [
+              "Consider different audiences and approaches",
+              "Use both emotional and practical appeals",
+              "Include cultural significance and benefits",
+              "Develop clear, compelling messaging"
+            ]
+          },
+          points: 30
         },
-        points: 15
+        2: {
+          title: "Leading Karakia",
+          description: "Lead karakia at home or at work today.",
+          type: "learning",
+          content: {
+            cultural_context: "Leading karakia demonstrates cultural leadership and brings spiritual grounding to communities.",
+            facts: [
+              "Choose appropriate karakia for the context",
+              "Lead with confidence and cultural sensitivity",
+              "Explain the purpose to participants",
+              "Create inclusive spiritual moments"
+            ]
+          },
+          points: 30
+        },
+        3: {
+          title: "English-Free Lunch",
+          description: "Eat lunch today with other people who kōrero Māori and try not to speak any English.",
+          type: "learning",
+          content: {
+            cultural_context: "Immersive social experiences build natural conversation skills and cultural confidence.",
+            facts: [
+              "Find other te reo Māori speakers",
+              "Commit to full immersion",
+              "Support each other's efforts",
+              "Use natural conversation topics"
+            ]
+          },
+          points: 30
+        },
+        4: {
+          title: "Whaikōrero Analysis",
+          description: "Listen to a recording of a political speech or whaikōrero and identify rhetorical devices used.",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding rhetorical techniques in whaikōrero develops appreciation for oratory traditions.",
+            facts: [
+              "Identify metaphors and imagery",
+              "Notice structural patterns",
+              "Understand cultural references",
+              "Analyze persuasive techniques"
+            ]
+          },
+          points: 30
+        },
+        5: {
+          title: "Hapa Reo Solutions",
+          description: "Identify a common hapa reo and develop a tip or trick to avoid it. Share what you've learned with your mates!",
+          type: "learning",
+          content: {
+            cultural_context: "Identifying and correcting language errors helps maintain accuracy and teaches others.",
+            facts: [
+              "Choose a common mistake you've observed",
+              "Develop practical memory aids",
+              "Share educational tips with others",
+              "Build language accuracy awareness"
+            ]
+          },
+          points: 30
+        },
+        6: {
+          title: "Karapipiti Creation",
+          description: "Write your karapipiti or pepeha whakanikoniko and share it with your whānau. You can use the Mahuru website as a resource.",
+          type: "learning",
+          content: {
+            cultural_context: "Creating detailed pepeha establishes deep cultural identity and connection to place.",
+            facts: [
+              "Include all significant geographical connections",
+              "Use poetic and meaningful language",
+              "Connect to ancestral references",
+              "Share with appropriate cultural context"
+            ]
+          },
+          points: 30
+        },
+        7: {
+          title: "Tikanga Comparison",
+          description: "Talk to someone from a different marae. Find one common tikanga and one that differs between your marae.",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding regional variations in tikanga demonstrates the diversity within Māori culture.",
+            facts: [
+              "Approach with respect and curiosity",
+              "Ask appropriate questions about practices",
+              "Share your own marae's tikanga",
+              "Build understanding of cultural diversity"
+            ]
+          },
+          points: 30
+        },
+        8: {
+          title: "Kīwaha Challenge",
+          description: "See how many kīwaha you can use in conversation today.",
+          type: "learning",
+          content: {
+            cultural_context: "Using multiple kīwaha demonstrates advanced cultural fluency and natural expression.",
+            facts: [
+              "Choose contextually appropriate expressions",
+              "Use with native speakers when possible",
+              "Maintain natural conversation flow",
+              "Practice advanced cultural expression"
+            ]
+          },
+          points: 30
+        },
+        9: {
+          title: "Extended Reading",
+          description: "Find a book or website written entirely in te reo Māori. See how much you can read in the next week.",
+          type: "learning",
+          content: {
+            cultural_context: "Extended reading in te reo Māori builds comprehension and exposes learners to sophisticated language use.",
+            facts: [
+              "Choose material at appropriate difficulty",
+              "Set realistic daily reading goals",
+              "Take notes on new vocabulary",
+              "Discuss content with other learners"
+            ]
+          },
+          points: 30
+        },
+        10: {
+          title: "Cooking Demo",
+          description: "Create a cooking demo entirely in te reo Māori. Record yourself giving instructions as you cook your favourite kai.",
+          type: "learning",
+          content: {
+            cultural_context: "Teaching practical skills in te reo Māori demonstrates its functionality in everyday activities.",
+            facts: [
+              "Plan your instructions beforehand",
+              "Use cooking and food vocabulary",
+              "Include cultural context about ingredients",
+              "Create a useful learning resource"
+            ]
+          },
+          points: 30
+        },
+        11: {
+          title: "Reo Journey Story",
+          description: "Write a poem or short story about your journey learning and speaking te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Creative expression in te reo Māori demonstrates advanced language use and personal reflection.",
+            facts: [
+              "Use creative language techniques",
+              "Include personal experiences and emotions",
+              "Practice advanced vocabulary and structures",
+              "Share your cultural journey"
+            ]
+          },
+          points: 30
+        },
+        12: {
+          title: "News Analysis",
+          description: "Watch a reo Māori news broadcast and summarise one of the stories in your own words.",
+          type: "learning",
+          content: {
+            cultural_context: "Analyzing current affairs content builds comprehension skills with sophisticated material.",
+            facts: [
+              "Choose stories of interest to you",
+              "Focus on main points and details",
+              "Practice news vocabulary",
+              "Build current affairs discussion skills"
+            ]
+          },
+          points: 30
+        },
+        13: {
+          title: "Whīwhiwhi Teaching",
+          description: "Try out 3 whīwhiwhi and teach them to a friend, whānau member, or coworker. Practice them until you can say them easily!",
+          type: "learning",
+          content: {
+            cultural_context: "Tongue twisters are fun cultural elements that improve pronunciation and cultural engagement.",
+            facts: [
+              "Master pronunciation before teaching",
+              "Explain cultural significance",
+              "Make learning fun and engaging",
+              "Build pronunciation skills"
+            ]
+          },
+          points: 30
+        },
+        14: {
+          title: "Formal Letter Writing",
+          description: "Write a formal letter or submission entirely in te reo Māori about a subject you're passionate about.",
+          type: "learning",
+          content: {
+            cultural_context: "Formal writing demonstrates advanced language skills and cultural confidence in official contexts.",
+            facts: [
+              "Use appropriate formal language structures",
+              "Include proper cultural protocols",
+              "Address important issues thoughtfully",
+              "Practice official communication skills"
+            ]
+          },
+          points: 30
+        },
+        15: {
+          title: "Movie Description Game",
+          description: "Describe your favourite movie or TV show in te reo Māori to a friend without giving away its name and see if they can guess which one you're talking about.",
+          type: "learning",
+          content: {
+            cultural_context: "Descriptive games build creative language use while maintaining cultural engagement.",
+            facts: [
+              "Use descriptive vocabulary creatively",
+              "Avoid obvious identifying words",
+              "Practice plot and character description",
+              "Make it fun and interactive"
+            ]
+          },
+          points: 30
+        },
+        16: {
+          title: "Cultural Tour",
+          description: "Take a friend on a tour of a place that's important to you. Try to speak as little English as you can during the tour.",
+          type: "learning",
+          content: {
+            cultural_context: "Sharing important places in te reo Māori builds cultural connections and practical skills.",
+            facts: [
+              "Prepare location-specific vocabulary",
+              "Share cultural significance appropriately",
+              "Practice extended speaking",
+              "Build cultural sharing confidence"
+            ]
+          },
+          points: 30
+        },
+        17: {
+          title: "Dialect Analysis",
+          description: "Listen to kōrero from a different reo Māori dialect and note the differences in their speech.",
+          type: "learning",
+          content: {
+            cultural_context: "Understanding dialectal differences demonstrates appreciation for regional language variations.",
+            facts: [
+              "Listen carefully to pronunciation differences",
+              "Note vocabulary variations",
+              "Respect regional language traditions",
+              "Build linguistic awareness"
+            ]
+          },
+          points: 30
+        },
+        18: {
+          title: "Storytelling Challenge",
+          description: "Tell a story using as many kīwaha, whakataukī, and kupu whakarite/kupu whakaniko as you can. Challenge a friend to do the same and see who can use more.",
+          type: "learning",
+          content: {
+            cultural_context: "Advanced storytelling showcases sophisticated cultural and linguistic knowledge.",
+            facts: [
+              "Prepare cultural expressions beforehand",
+              "Use them naturally within narrative",
+              "Make it a fun competition",
+              "Demonstrate advanced cultural fluency"
+            ]
+          },
+          points: 30
+        },
+        19: {
+          title: "Te Matatini Commentary",
+          description: "Share a performance from this year's Te Matatini and describe in te reo Māori why it was impactful for you. You can find videos of the performances online or on demand.",
+          type: "learning",
+          content: {
+            cultural_context: "Analyzing cultural performances builds appreciation and critical thinking skills in te reo Māori.",
+            facts: [
+              "Choose a performance that moved you",
+              "Use evaluative and emotional vocabulary",
+              "Discuss cultural and artistic elements",
+              "Share cultural analysis skills"
+            ]
+          },
+          points: 30
+        },
+        20: {
+          title: "News Translation",
+          description: "Pick a news story today and try translating it into te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Translating current affairs demonstrates advanced language skills and cultural adaptation.",
+            facts: [
+              "Choose appropriate news content",
+              "Adapt cultural context appropriately",
+              "Use sophisticated vocabulary",
+              "Practice professional translation skills"
+            ]
+          },
+          points: 30
+        },
+        21: {
+          title: "Rhyming Email",
+          description: "Write an email to a friend or whānau member using only rhyming phrases in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Creative language use demonstrates playfulness and advanced linguistic skills.",
+            facts: [
+              "Plan rhyming patterns beforehand",
+              "Maintain meaning while rhyming",
+              "Use creative vocabulary",
+              "Make communication fun and engaging"
+            ]
+          },
+          points: 30
+        },
+        22: {
+          title: "Language Philosophy Debate",
+          description: "If a kupu Māori is loaned or transliterated from English, does that make it 'less' Māori? Have a debate in te reo Māori with a friend, whānau member, or coworker.",
+          type: "learning",
+          content: {
+            cultural_context: "Philosophical discussions about language demonstrate critical thinking and cultural analysis.",
+            facts: [
+              "Consider both sides of the argument",
+              "Use sophisticated reasoning vocabulary",
+              "Discuss language evolution and identity",
+              "Build debate skills in te reo Māori"
+            ]
+          },
+          points: 30
+        },
+        23: {
+          title: "Fictional Obituary",
+          description: "Write an obituary for a fictional character in te reo Māori.",
+          type: "learning",
+          content: {
+            cultural_context: "Creative writing exercises build advanced vocabulary and cultural understanding of life celebrations.",
+            facts: [
+              "Use appropriate honorific language",
+              "Include cultural elements respectfully",
+              "Practice formal commemorative writing",
+              "Build advanced writing skills"
+            ]
+          },
+          points: 30
+        },
+        24: {
+          title: "Speaker Style Analysis",
+          description: "Watch kōrero from two well-known speakers of te reo Māori and compare and contrast their speaking styles. Which one is more appealing to you?",
+          type: "learning",
+          content: {
+            cultural_context: "Analyzing speaking styles builds appreciation for oratory traditions and personal preferences.",
+            facts: [
+              "Notice rhetorical techniques",
+              "Compare delivery styles",
+              "Identify personal preferences",
+              "Build critical listening skills"
+            ]
+          },
+          points: 30
+        },
+        25: {
+          title: "Supporting Struggling Learners",
+          description: "What are 3 things you can do to help people who might be struggling to learn and speak te reo Māori? Try to do all 3 today.",
+          type: "learning",
+          content: {
+            cultural_context: "Supporting other learners builds community and demonstrates cultural leadership.",
+            facts: [
+              "Identify specific support strategies",
+              "Offer encouragement and resources",
+              "Share your learning experiences",
+              "Build supportive learning communities"
+            ]
+          },
+          points: 30
+        },
+        26: {
+          title: "Persuasive Advertisement",
+          description: "Create an advertisement in te reo Māori for a product or service that you love. Be persuasive!",
+          type: "learning",
+          content: {
+            cultural_context: "Creating advertisements demonstrates advanced persuasive language and cultural adaptation.",
+            facts: [
+              "Use compelling persuasive techniques",
+              "Adapt marketing concepts culturally",
+              "Practice commercial vocabulary",
+              "Build advanced persuasive skills"
+            ]
+          },
+          points: 30
+        },
+        27: {
+          title: "Poetry Analysis",
+          description: "Read a poem in te reo Māori. What language elements can you find?",
+          type: "learning",
+          content: {
+            cultural_context: "Literary analysis builds appreciation for poetic traditions and advanced language techniques.",
+            facts: [
+              "Identify metaphors and imagery",
+              "Notice rhythm and sound patterns",
+              "Understand cultural references",
+              "Build literary appreciation skills"
+            ]
+          },
+          points: 30
+        },
+        28: {
+          title: "News Language Comparison",
+          description: "Find two news stories about the same event, one in te reo Māori and one in te reo Pākehā. Note the key differences in the type of language used and explain it to a friend or whānau member.",
+          type: "learning",
+          content: {
+            cultural_context: "Comparing language use across cultures builds understanding of linguistic and cultural differences.",
+            facts: [
+              "Compare vocabulary choices",
+              "Notice cultural framing differences",
+              "Analyze structural variations",
+              "Build comparative language skills"
+            ]
+          },
+          points: 30
+        },
+        29: {
+          title: "Letter to Tūpuna",
+          description: "Write a letter to one of your tūpuna explaining how the use of te reo Māori has changed in Aotearoa in the past 10 years.",
+          type: "learning",
+          content: {
+            cultural_context: "Connecting with ancestors through language demonstrates deep cultural understanding and personal reflection.",
+            facts: [
+              "Use respectful ancestral address",
+              "Discuss language revitalization progress",
+              "Include personal and societal changes",
+              "Practice formal ancestral communication"
+            ]
+          },
+          points: 30
+        },
+        30: {
+          title: "Future Planning",
+          description: "Post in the Mahuru Māori Facebook group how you're going to continue to grow your reo after Mahuru – or, if you're not on social media, message a friend or whānau member to help keep you accountable.",
+          type: "learning",
+          content: {
+            cultural_context: "Committing to continued learning ensures language growth continues beyond formal challenges.",
+            facts: [
+              "Set realistic continuing goals",
+              "Find accountability partners",
+              "Plan specific learning activities",
+              "Celebrate your progress so far"
+            ]
+          },
+          points: 30
+        }
       }
-    },
-    intermediate: {
-      1: {
-        title: "Kia Ora Customs - Cultural Greetings",
-        description: "Explore the deeper meanings behind Māori greetings and cultural protocols",
-        type: "learning",
-        content: {
-          cultural_context: "Kia ora carries spiritual significance beyond a simple greeting. It's a blessing that acknowledges the life force (mauri) in all people and places.",
-          facts: [
-            "Kia ora connects to the concept of mauri - life force or vital essence",
-            "Different greetings are used for different times and situations",
-            "The tone and context change the spiritual weight of the greeting",
-            "Traditional responses show understanding of Māori worldview"
-          ],
-          story: "In traditional times, when travelers approached a marae, they would call out 'Kia ora!' not just as greeting, but as a way to announce their peaceful intentions and ask permission to enter sacred space. The response would determine whether they were welcomed as friends or needed to prove their mana."
-        },
-        points: 15
-      },
-      2: {
-        title: "Numbers & Counting Systems",
-        description: "Learn Māori numbers 1-20 and traditional counting methods",
-        type: "quiz",
-        content: {
-          question: "How do you say 'fifteen' in Māori?",
-          options: ["tekau mā rima", "rima tekau", "tekau rima", "rima ma tekau"],
-          correct: 0,
-          explanation: "Tekau mā rima means 'ten and five'. Māori counting follows a base-10 system with 'mā' meaning 'and' for compound numbers."
-        },
-        points: 15
-      },
-      3: {
-        title: "Extended Whānau Networks",
-        description: "Understanding the complex relationships within Māori family structures",
-        type: "story",
-        content: {
-          story: "Tama lived in the city, far from his tūrangawaewae (home base). When hard times came, he remembered his kuia's words: 'Whānau is not just blood - it's all who share your journey.' He reached out to his urban whānau - Māori friends who had become family through shared experience, cultural practice, and mutual support. Together, they created a new kind of marae in the city, proving that whānau adapts and grows beyond traditional boundaries.",
-          cultural_context: "Extended whānau includes not just blood relatives but adoptive family, close friends, and community members who share responsibilities and support each other through life's challenges.",
-          facts: [
-            "Whāngai (adoption) creates family bonds as strong as blood",
-            "Urban whānau networks provide cultural support in cities",
-            "Collective responsibility extends to the wider community",
-            "Modern whānau may include chosen family and cultural connections"
-          ]
-        },
-        points: 20
-      }
-    },
-    advanced: {
-      1: {
-        title: "Kia Ora - Philosophical Foundations",
-        description: "Deep dive into the metaphysical and spiritual dimensions of Māori greetings",
-        type: "learning",
-        content: {
-          cultural_context: "Kia ora represents a complex philosophical framework that encompasses whakapapa (genealogical connections), mauri (life essence), and the interconnectedness of all existence within Te Ao Māori.",
-          facts: [
-            "Kia ora activates whakapapa connections between people and place",
-            "The greeting acknowledges the atua (spiritual forces) present in all interactions",
-            "Historical variations include formal and ceremonial applications",
-            "Contemporary usage maintains spiritual significance in secular contexts",
-            "Cross-cultural adaptations demonstrate resilience of Māori worldview"
-          ],
-          story: "When the first European explorers arrived, Māori elders observed their customs carefully. They noted that these strangers had greetings but no spiritual awareness within them. The decision to share 'Kia ora' was not casual - it was a deliberate act of cultural generosity, an attempt to awaken spiritual consciousness in the newcomers. Today, when we say 'Kia ora,' we continue this tradition of sharing life force with others."
-        },
-        points: 30
-      },
-      2: {
-        title: "Mathematical Concepts in Te Reo",
-        description: "Advanced exploration of numbers, geometry, and mathematical thinking in Māori culture",
-        type: "quiz",
-        content: {
-          question: "What deeper cultural concept does the Māori number system demonstrate about traditional worldview?",
-          options: [
-            "Base-10 system shows European influence",
-            "Collective counting reflects communal values",
-            "Number patterns mirror natural cycles and whakapapa",
-            "Mathematical precision for trade purposes"
-          ],
-          correct: 2,
-          explanation: "Māori number systems reflect deeper cultural patterns about cycles, genealogy, and natural order. The structure mirrors whakapapa relationships and seasonal patterns."
-        },
-        points: 30
-      },
-      3: {
-        title: "Whānau as Complex Social System",
-        description: "Analyzing whānau as a sophisticated governance and social support structure",
-        type: "story",
-        content: {
-          story: "Dr. Aroha Williams, a specialist in indigenous governance, was researching traditional Māori social systems when she made a breakthrough discovery. Ancient whānau structures weren't just family units - they were sophisticated political, economic, and educational institutions. Each whānau had specialized roles: some focused on spiritual leadership, others on resource management, still others on knowledge preservation. When colonization disrupted these systems, it wasn't just families that were broken - it was an entire parallel governance system that had sustained Māori society for centuries. Her research now helps contemporary iwi reconstruct these systems for modern tribal development.",
-          cultural_context: "Whānau operated as multifunctional institutions that provided governance, education, resource distribution, spiritual guidance, and conflict resolution. Understanding this complexity is crucial for contemporary Māori development.",
-          facts: [
-            "Whānau functioned as micro-political units within larger tribal structures",
-            "Specialized roles included spiritual leadership, resource management, and education",
-            "Decision-making processes incorporated collective wisdom and whakapapa considerations",
-            "Modern iwi are reconstructing these systems for contemporary governance",
-            "Whānau-based approaches inform current Māori social policy and development"
-          ]
-        },
-        points: 25
-      }
-    }
     }
 
     const difficultyActivities = activities[difficulty] || activities.beginner
