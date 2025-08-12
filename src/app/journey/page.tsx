@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 
 interface DayNode {
   day: number
@@ -17,15 +19,62 @@ interface DayNode {
   points: number
 }
 
+interface Activity {
+  id: string
+  day: number
+  title: string
+  description: string
+  type: 'quiz' | 'game' | 'story' | 'learning'
+  difficulty: string
+  points: number
+}
+
 export default function Journey() {
   const { isAuthenticated, user, profile, character, loading } = useAuth()
   const router = useRouter()
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
+  const [activities, setActivities] = useState<Activity[]>([])
+  const [activitiesLoading, setActivitiesLoading] = useState(true)
   const scrollRef = useRef<HTMLDivElement>(null)
   const { scrollX } = useScroll({ container: scrollRef })
 
   // Transform for parallax effect
   const backgroundX = useTransform(scrollX, [0, 1000], [0, -200])
+
+  // Fetch activities from Firebase
+  const fetchActivities = async () => {
+    try {
+      console.log('Fetching activities from Firebase...')
+      const activitiesRef = collection(db, 'activities')
+      const q = query(
+        activitiesRef,
+        where('difficulty', '==', profile?.difficulty_level || 'beginner'),
+        orderBy('day')
+      )
+      const querySnapshot = await getDocs(q)
+      
+      const fetchedActivities: Activity[] = []
+      querySnapshot.forEach((doc) => {
+        const data = doc.data()
+        fetchedActivities.push({
+          id: doc.id,
+          day: data.day,
+          title: data.title,
+          description: data.description,
+          type: data.type,
+          difficulty: data.difficulty,
+          points: data.points
+        })
+      })
+      
+      console.log('Fetched activities:', fetchedActivities)
+      setActivities(fetchedActivities)
+    } catch (error) {
+      console.error('Error fetching activities:', error)
+    } finally {
+      setActivitiesLoading(false)
+    }
+  }
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -33,7 +82,13 @@ export default function Journey() {
     }
   }, [isAuthenticated, loading, router])
 
-  if (loading) {
+  useEffect(() => {
+    if (profile?.difficulty_level && activitiesLoading) {
+      fetchActivities()
+    }
+  }, [profile?.difficulty_level, activitiesLoading])
+
+  if (loading || activitiesLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10 flex items-center justify-center">
         <div className="flex items-center space-x-4">
@@ -59,13 +114,16 @@ export default function Journey() {
       const isUnlocked = isActivityUnlocked(day, profile?.current_day || 1, profile?.difficulty_level)
       const isCompleted = day < (profile?.current_day || 1)
 
+      // Find activity for this day
+      const activity = activities.find(a => a.day === day)
+      
       return {
         day,
-        title: getDayTitle(day, profile?.difficulty_level),
+        title: activity?.title || `Day ${day}`,
         isUnlocked,
         isCompleted,
-        activityType: activityTypes[(day - 1) % 4],
-        points: Math.floor(getDayPoints(day) * difficultyMultiplier)
+        activityType: (activity?.type as 'quiz' | 'game' | 'story' | 'learning') || activityTypes[(day - 1) % 4],
+        points: activity?.points || Math.floor(getDayPoints(day) * difficultyMultiplier)
       }
     })
   }
@@ -308,7 +366,7 @@ export default function Journey() {
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle className="text-xl">
-                      Day {selectedDay}: {getDayTitle(selectedDay)}
+                      Day {selectedDay}: {dayNodes[selectedDay - 1]?.title || `Day ${selectedDay}`}
                     </CardTitle>
                     <CardDescription className="flex items-center space-x-2 mt-1">
                       <span>{getActivityIcon(dayNodes[selectedDay - 1].activityType)}</span>
