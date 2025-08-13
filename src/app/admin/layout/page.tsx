@@ -24,8 +24,8 @@ interface LayoutSetting {
   key: string
   label: string
   type: 'color' | 'text' | 'number' | 'select' | 'boolean'
-  value: any
-  options?: { label: string; value: any }[]
+  value: string | number | boolean
+  options?: { label: string; value: string | number }[]
   min?: number
   max?: number
   step?: number
@@ -39,7 +39,7 @@ export default function LayoutManagement() {
   const permissions = useAdminPermissions()
   const { layouts, loading: layoutsLoading, updateLayout } = useLayoutSettings()
   
-  const [editingSettings, setEditingSettings] = useState<Record<string, any>>({})
+  const [editingSettings, setEditingSettings] = useState<Record<string, string | number | boolean>>({})
   const [saving, setSaving] = useState(false)
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
@@ -240,7 +240,7 @@ export default function LayoutManagement() {
     )
   }
 
-  const handleInputChange = (componentId: string, key: string, value: any) => {
+  const handleInputChange = (componentId: string, key: string, value: string | number | boolean) => {
     setEditingSettings(prev => ({
       ...prev,
       [`${componentId}_${key}`]: value
@@ -257,7 +257,7 @@ export default function LayoutManagement() {
       if (!component) return
 
       // Build the settings object from edited values
-      const settings: any = {
+      const settings: Record<string, unknown> = {
         component: componentId,
         styles: {},
         visibility: {}

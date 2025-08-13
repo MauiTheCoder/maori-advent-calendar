@@ -56,7 +56,7 @@ export const useCMSContent = () => {
     return () => unsubscribe()
   }, [])
 
-  const updateContent = async (key: string, value: any, metadata?: any): Promise<void> => {
+  const updateContent = async (key: string, value: string | number | boolean | Record<string, unknown>, metadata?: Record<string, string>): Promise<void> => {
     try {
       const contentData: Partial<CMSContent> = {
         key,
@@ -75,7 +75,7 @@ export const useCMSContent = () => {
     }
   }
 
-  const getContent = (key: string, defaultValue?: any): any => {
+  const getContent = (key: string, defaultValue?: string | number | boolean | Record<string, unknown>): string | number | boolean | Record<string, unknown> | undefined => {
     return content[key]?.value ?? defaultValue
   }
 

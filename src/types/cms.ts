@@ -2,7 +2,7 @@ export interface CMSContent {
   id: string
   type: 'text' | 'image' | 'layout' | 'activity' | 'global'
   key: string
-  value: any
+  value: string | number | boolean | Record<string, unknown>
   metadata?: {
     description?: string
     section?: string
@@ -58,12 +58,12 @@ export interface LayoutSettings {
     heroCentered?: boolean
     tipsExpanded?: boolean
     completionAnimation?: boolean
-    [key: string]: any
+    [key: string]: string | number | boolean | Record<string, unknown> | undefined
   }
   visibility?: {
     [key: string]: boolean
   }
-  content?: Record<string, any>
+  content?: Record<string, string | number | boolean | Record<string, unknown>>
   lastUpdated?: string
   updatedBy?: string
 }
@@ -142,8 +142,8 @@ export interface ContentField {
   label: string
   type: 'text' | 'textarea' | 'rich-text' | 'image' | 'select' | 'boolean' | 'color' | 'number'
   required?: boolean
-  defaultValue?: any
-  options?: { label: string; value: any }[]
+  defaultValue?: string | number | boolean
+  options?: { label: string; value: string | number }[]
   validation?: {
     minLength?: number
     maxLength?: number

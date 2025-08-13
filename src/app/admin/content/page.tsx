@@ -24,7 +24,7 @@ interface ContentItem {
   key: string
   label: string
   type: 'text' | 'textarea' | 'color' | 'url'
-  value: any
+  value: string | number | boolean
   placeholder?: string
   description?: string
 }
@@ -35,7 +35,7 @@ export default function ContentManagement() {
   const permissions = useAdminPermissions()
   const { content, loading: contentLoading, updateContent } = useCMSContent()
   
-  const [editingContent, setEditingContent] = useState<Record<string, any>>({})
+  const [editingContent, setEditingContent] = useState<Record<string, string | number | boolean>>({})
   const [saving, setSaving] = useState(false)
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
@@ -238,7 +238,7 @@ export default function ContentManagement() {
     )
   }
 
-  const handleInputChange = (key: string, value: any) => {
+  const handleInputChange = (key: string, value: string | number | boolean) => {
     setEditingContent(prev => ({
       ...prev,
       [key]: value

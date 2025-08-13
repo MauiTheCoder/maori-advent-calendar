@@ -36,13 +36,14 @@ export default function AdminLogin() {
       await signInWithEmailAndPassword(auth, email, password)
       // The useAdmin hook will check if this is an admin user
       // and redirect will happen in useEffect
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Login error:', error)
-      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+      const firebaseError = error as { code?: string; message?: string }
+      if (firebaseError.code === 'auth/user-not-found' || firebaseError.code === 'auth/wrong-password') {
         setError('Invalid email or password')
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (firebaseError.code === 'auth/invalid-email') {
         setError('Invalid email address')
-      } else if (error.code === 'auth/user-disabled') {
+      } else if (firebaseError.code === 'auth/user-disabled') {
         setError('This account has been disabled')
       } else {
         setError('Login failed. Please try again.')

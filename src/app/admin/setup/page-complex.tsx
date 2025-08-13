@@ -81,14 +81,15 @@ export default function AdminSetup() {
 
       setSuccess('First admin user created successfully!')
       setStep('complete')
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Admin creation error:', error)
       
-      if (error.code === 'auth/email-already-in-use') {
+      const firebaseError = error as { code?: string; message?: string }
+      if (firebaseError.code === 'auth/email-already-in-use') {
         setError('Email is already in use')
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (firebaseError.code === 'auth/invalid-email') {
         setError('Invalid email address')
-      } else if (error.code === 'auth/weak-password') {
+      } else if (firebaseError.code === 'auth/weak-password') {
         setError('Password is too weak')
       } else {
         setError('Failed to create admin user. Please try again.')

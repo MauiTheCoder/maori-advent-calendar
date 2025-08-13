@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { ActivityContent } from '@/types/cms'
 
 export default function ActivitiesManagement() {
   const router = useRouter()
@@ -20,7 +21,7 @@ export default function ActivitiesManagement() {
   const { activities, loading: activitiesLoading, updateActivity } = useActivities()
   
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
-  const [editingActivity, setEditingActivity] = useState<any>(null)
+  const [editingActivity, setEditingActivity] = useState<ActivityContent | null>(null)
   const [saving, setSaving] = useState(false)
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
@@ -82,21 +83,21 @@ export default function ActivitiesManagement() {
     }
   }
 
-  const handleInputChange = (field: string, value: any) => {
-    setEditingActivity((prev: any) => ({
+  const handleInputChange = (field: keyof ActivityContent, value: string | number) => {
+    setEditingActivity((prev: ActivityContent | null) => prev ? ({
       ...prev,
       [field]: value
-    }))
+    }) : null)
   }
 
-  const handleNestedInputChange = (parent: string, field: string, value: any) => {
-    setEditingActivity((prev: any) => ({
+  const handleNestedInputChange = (parent: string, field: string, value: string | number) => {
+    setEditingActivity((prev: ActivityContent | null) => prev ? ({
       ...prev,
       [parent]: {
-        ...prev[parent],
+        ...(prev[parent as keyof ActivityContent] as Record<string, unknown> || {}),
         [field]: value
       }
-    }))
+    }) : null)
   }
 
   return (
