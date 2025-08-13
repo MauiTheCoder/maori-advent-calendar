@@ -17,7 +17,7 @@ export const ensureUserProfile = async (
     total_points: 0,
     achievements: [],
     completed_days: [],
-    last_activity_date: null,
+    last_activity_date: undefined,
     email_verified: false,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
