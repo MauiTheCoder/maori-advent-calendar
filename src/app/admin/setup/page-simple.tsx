@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function AdminSetupSimple() {
   const [step, setStep] = useState<'initialize' | 'create_admin' | 'complete'>('initialize')
@@ -117,12 +118,12 @@ export default function AdminSetupSimple() {
               >
                 Go to Admin Login
               </a>
-              <a 
+              <Link 
                 href="/"
                 className="block w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
               >
                 View Live Site
-              </a>
+              </Link>
             </div>
           </div>
         )}

@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 export default function TestAdmin() {
   return (
     <div style={{
@@ -71,7 +73,7 @@ export default function TestAdmin() {
         </div>
         
         <div style={{ marginBottom: '12px' }}>
-          <a 
+          <Link 
             href="/"
             style={{
               display: 'block',
@@ -86,7 +88,7 @@ export default function TestAdmin() {
             }}
           >
             ← Back to Main Site
-          </a>
+          </Link>
         </div>
         
         <div style={{

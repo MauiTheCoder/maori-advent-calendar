@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -43,7 +43,7 @@ export default function Journey() {
   const backgroundX = useTransform(scrollX, [0, 1000], [0, -200])
 
   // Fetch activities from Firebase
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
     try {
       console.log('Fetching activities from Firebase...')
       console.log('Profile difficulty level:', profile?.difficulty_level)
@@ -81,7 +81,7 @@ export default function Journey() {
     } finally {
       setActivitiesLoading(false)
     }
-  }
+  }, [profile?.difficulty_level])
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -93,7 +93,7 @@ export default function Journey() {
     if (profile?.difficulty_level && activitiesLoading) {
       fetchActivities()
     }
-  }, [profile?.difficulty_level, activitiesLoading])
+  }, [profile?.difficulty_level, activitiesLoading, fetchActivities])
 
   if (loading || activitiesLoading) {
     return (
