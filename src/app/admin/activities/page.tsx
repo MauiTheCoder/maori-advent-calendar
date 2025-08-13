@@ -50,6 +50,7 @@ export default function ActivitiesManagement() {
     } else {
       // Create new activity
       setEditingActivity({
+        id: `day_${day}_new`, // Temporary ID for new activities
         day,
         beginner: '',
         intermediate: '',
