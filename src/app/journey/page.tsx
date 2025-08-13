@@ -366,7 +366,11 @@ export default function Journey() {
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle className="text-xl">
-                      Day {selectedDay}: {dayNodes[selectedDay - 1]?.title?.replace(/^Day \d+:\s*/, '') || 'Activity'}
+                      Day {selectedDay}: {(() => {
+                        const dayNode = dayNodes[selectedDay - 1];
+                        const activity = activities.find(a => a.day === selectedDay);
+                        return activity?.title || dayNode?.title?.replace(/^Day \d+:\s*/, '') || 'Activity';
+                      })()}
                     </CardTitle>
                     <CardDescription className="flex items-center space-x-2 mt-1">
                       <span>{getActivityIcon(dayNodes[selectedDay - 1].activityType)}</span>
