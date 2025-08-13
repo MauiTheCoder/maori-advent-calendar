@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Ensure we're using app router (default in Next.js 15)
+  swcMinify: true,
   allowedDevOrigins: ["*.preview.same-app.com"],
   images: {
     unoptimized: true,
