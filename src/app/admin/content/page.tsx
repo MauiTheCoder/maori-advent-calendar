@@ -57,7 +57,7 @@ export default function ContentManagement() {
           key: 'site_title',
           label: 'Site Title',
           type: 'text',
-          value: ((content['site_title']?.value as string) || 'Mahuru Activation 2025',
+          value: (content['site_title']?.value as string) || 'Mahuru Activation 2025',
           placeholder: 'Mahuru Activation 2025',
           description: 'Main site title displayed in header'
         },
@@ -65,7 +65,7 @@ export default function ContentManagement() {
           key: 'site_subtitle',
           label: 'Site Subtitle',
           type: 'text',
-          value: ((content['site_subtitle']?.value as string) || '30-Day Te Reo Māori Challenge',
+          value: (content['site_subtitle']?.value as string) || '30-Day Te Reo Māori Challenge',
           placeholder: '30-Day Te Reo Māori Challenge',
           description: 'Subtitle shown below main title'
         },
@@ -73,28 +73,28 @@ export default function ContentManagement() {
           key: 'hero_heading',
           label: 'Hero Heading',
           type: 'text',
-          value: ((content['hero_heading']?.value as string) || 'Kia Ora!\nMaster Te Reo Māori',
+          value: (content['hero_heading']?.value as string) || 'Kia Ora!\nMaster Te Reo Māori',
           placeholder: 'Kia Ora!\nMaster Te Reo Māori'
         },
         {
           key: 'hero_description',
           label: 'Hero Description',
           type: 'textarea',
-          value: ((content['hero_description']?.value as string) || 'Join the Mahuru Challenge! Participate in 30 days of progressive te reo Māori activation activities. From beginner pronunciation to advanced conversation, strengthen your reo Māori journey with daily challenges and expert guidance.',
+          value: (content['hero_description']?.value as string) || 'Join the Mahuru Challenge! Participate in 30 days of progressive te reo Māori activation activities. From beginner pronunciation to advanced conversation, strengthen your reo Māori journey with daily challenges and expert guidance.',
           placeholder: 'Hero section description text'
         },
         {
           key: 'signup_title',
           label: 'Signup Form Title',
           type: 'text',
-          value: ((content['signup_title']?.value as string) || 'Begin Your Cultural Journey',
+          value: (content['signup_title']?.value as string) || 'Begin Your Cultural Journey',
           placeholder: 'Begin Your Cultural Journey'
         },
         {
           key: 'signup_description',
           label: 'Signup Form Description',
           type: 'textarea',
-          value: ((content['signup_description']?.value as string) || 'Create your account and choose your skill level to begin the Mahuru Challenge',
+          value: (content['signup_description']?.value as string) || 'Create your account and choose your skill level to begin the Mahuru Challenge',
           placeholder: 'Signup form description'
         }
       ]
@@ -108,14 +108,14 @@ export default function ContentManagement() {
           key: 'feature_1_title',
           label: 'Feature 1: Title',
           type: 'text',
-          value: ((content['feature_1_title']?.value as string) || 'Daily Language Activation',
+          value: (content['feature_1_title']?.value as string) || 'Daily Language Activation',
           placeholder: 'Daily Language Activation'
         },
         {
           key: 'feature_2_title',
           label: 'Feature 2: Title',
           type: 'text',
-          value: ((content['feature_2_title']?.value as string) || 'Progressive Skill Building',
+          value: (content['feature_2_title']?.value as string) || 'Progressive Skill Building',
           placeholder: 'Progressive Skill Building'
         },
         {
