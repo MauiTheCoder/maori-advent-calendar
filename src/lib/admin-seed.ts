@@ -289,6 +289,6 @@ const generateActivityTitle = (activityText: string): string => {
 
 // Expose initialization function globally for easy access
 if (typeof window !== 'undefined') {
-  (window as Record<string, unknown>).initializeMahuruAdmin = initializeAdminSystem;
-  (window as Record<string, unknown>).createFirstAdmin = createFirstAdmin
+  (window as { [key: string]: unknown }).initializeMahuruAdmin = initializeAdminSystem;
+  (window as { [key: string]: unknown }).createFirstAdmin = createFirstAdmin
 }
