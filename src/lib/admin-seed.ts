@@ -289,6 +289,13 @@ const generateActivityTitle = (activityText: string): string => {
 
 // Expose initialization function globally for easy access
 if (typeof window !== 'undefined') {
-  (window as { [key: string]: unknown }).initializeMahuruAdmin = initializeAdminSystem;
-  (window as { [key: string]: unknown }).createFirstAdmin = createFirstAdmin
+  // Create a typed interface for the global functions
+  interface WindowWithGlobals extends Window {
+    initializeMahuruAdmin?: typeof initializeAdminSystem;
+    createFirstAdmin?: typeof createFirstAdmin;
+  }
+  
+  const globalWindow = window as WindowWithGlobals;
+  globalWindow.initializeMahuruAdmin = initializeAdminSystem;
+  globalWindow.createFirstAdmin = createFirstAdmin;
 }
