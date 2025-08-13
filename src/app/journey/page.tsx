@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
+import { mahuruActivities2025 } from '@/data/mahuru-activities'
 
 interface DayNode {
   day: number
@@ -135,38 +136,52 @@ export default function Journey() {
   }
 
   const getDayTitle = (day: number, difficulty?: string | null): string => {
-    const beginnerTitles = [
-      "Kia Ora", "Numbers 1-5", "My Whānau", "Hongi Greeting", "Simple Pōwhiri",
-      "Basic Colors", "Kai Māori", "Simple Haka", "Family Tree", "Nature Walk",
-      "Life Energy", "Bird Sounds", "My Story", "Local Area", "Garden Birds",
-      "Our Land", "Helpful Spirits", "Good Values", "Showing Love", "Being Kind",
-      "My Community", "Green Stone", "Shared Meal", "Simple Dance", "Happy Songs",
-      "Basic Art", "Face Patterns", "Meeting House", "Boat Journey", "New Zealand"
-    ]
+    const activity = mahuruActivities2025.find(a => a.day === day)
+    if (!activity) return `Day ${day}`
 
-    const intermediateTitles = [
-      "Kia Ora Customs", "Numbers 1-20", "Extended Whānau", "Hongi Protocol", "Pōwhiri Process",
-      "Color Meanings", "Traditional Kai", "Haka Movements", "Whakapapa Lines", "Te Taiao Balance",
-      "Mauri Connections", "Tūī Language", "Kōrero Traditions", "Tribal Areas", "Native Birds",
-      "Whenua Guardians", "Atua Guidance", "Tikanga Rules", "Aroha Practices", "Manaakitanga Ways",
-      "Iwi Heritage", "Pounamu Wisdom", "Hangi Cooking", "Kapa Haka Forms", "Waiata Styles",
-      "Cultural Art", "Tā Moko Stories", "Wharenui Features", "Waka Navigation", "Aotearoa History"
-    ]
+    let activityText = ''
+    switch (difficulty) {
+      case 'intermediate':
+        activityText = activity.intermediate
+        break
+      case 'advanced':
+        activityText = activity.advanced
+        break
+      default:
+        activityText = activity.beginner
+    }
 
-    const advancedTitles = [
-      "Kia Ora Philosophy", "Mathematical Concepts", "Whānau Dynamics", "Hongi Spirituality", "Pōwhiri Ceremonial",
-      "Color Symbolism", "Kai & Ceremony", "Haka as Expression", "Whakapapa Complexity", "Te Taiao Systems",
-      "Mauri Philosophy", "Tūī as Messenger", "Oral Traditions", "Territorial History", "Ecological Roles",
-      "Land Relationships", "Atua Cosmology", "Tikanga Depth", "Aroha Complexity", "Manaakitanga Ethics",
-      "Iwi Governance", "Pounamu Metaphysics", "Hangi Rituals", "Kapa Haka Excellence", "Waiata Composition",
-      "Contemporary Art", "Tā Moko Meanings", "Wharenui Architecture", "Waka Traditions", "Aotearoa Future"
-    ]
-
-    let titles = beginnerTitles
-    if (difficulty === 'intermediate') titles = intermediateTitles
-    else if (difficulty === 'advanced') titles = advancedTitles
-
-    return titles[day - 1] || `Day ${day}`
+    // Generate a short title from the activity text (first 3-4 words)
+    const words = activityText.split(' ')
+    if (words.length <= 4) return activityText
+    
+    // Create meaningful short titles
+    if (activityText.includes('pronunciation')) return 'Pronunciation Practice'
+    if (activityText.includes('greet')) return 'Te Reo Greetings'
+    if (activityText.includes('goodbye')) return 'Farewell Practice'
+    if (activityText.includes('introduce')) return 'Self Introduction'
+    if (activityText.includes('home') || activityText.includes('objects')) return 'Home Vocabulary'
+    if (activityText.includes('doing') || activityText.includes('responses')) return 'Wellbeing Check'
+    if (activityText.includes('work') || activityText.includes('label')) return 'Workplace Te Reo'
+    if (activityText.includes('email') || activityText.includes('message')) return 'Digital Te Reo'
+    if (activityText.includes('friend') || activityText.includes('family')) return 'Introductions'
+    if (activityText.includes('shopping') || activityText.includes('supermarket')) return 'Shopping Te Reo'
+    if (activityText.includes('weather')) return 'Weather Description'
+    if (activityText.includes('pepeha')) return 'Pepeha Creation'
+    if (activityText.includes('karakia')) return 'Karakia Practice'
+    if (activityText.includes('hello')) return 'Greeting Varieties'
+    if (activityText.includes('waiata')) return 'Waiata Learning'
+    if (activityText.includes('walk') || activityText.includes('surroundings')) return 'Environment Description'
+    if (activityText.includes('count')) return 'Counting Practice'
+    if (activityText.includes('days') || activityText.includes('week')) return 'Days of Week'
+    if (activityText.includes('marae')) return 'Marae Knowledge'
+    if (activityText.includes('tour')) return 'Te Reo Tours'
+    if (activityText.includes('history')) return 'Te Reo History'
+    if (activityText.includes('coffee') || activityText.includes('tea')) return 'Kai Orders'
+    if (activityText.includes('Facebook') || activityText.includes('continue')) return 'Future Learning'
+    
+    // Fallback to first few words
+    return words.slice(0, 3).join(' ') + '...'
   }
 
   const getDayPoints = (day: number): number => {

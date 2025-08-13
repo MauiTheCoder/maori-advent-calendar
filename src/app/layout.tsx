@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rā Katoa - Māori Cultural Journey",
-  description: "Embark on a 30-day cultural adventure through Aotearoa. Learn, grow, and discover the beauty of Māori culture through interactive activities, stories, and games.",
-  keywords: ["Māori", "culture", "learning", "Aotearoa", "New Zealand", "education", "cultural journey"],
+  title: "Mahuru Activation 2025 - Te Reo Māori Learning Platform",
+  description: "Join the Mahuru Challenge! Participate in 30 days of te reo Māori activation activities. Learn pronunciation, practice conversation, and strengthen your reo Māori journey through progressive daily challenges.",
+  keywords: ["Mahuru", "te reo Māori", "Māori language", "learning", "Aotearoa", "New Zealand", "education", "language activation", "pronunciation", "conversation"],
   authors: [{ name: "Te Wānanga o Aotearoa" }],
   openGraph: {
-    title: "Rā Katoa - Māori Cultural Journey",
-    description: "Embark on a 30-day cultural adventure through Aotearoa",
+    title: "Mahuru Activation 2025 - Te Reo Māori Learning Platform",
+    description: "Join the Mahuru Challenge! 30 days of te reo Māori activation activities",
     type: "website",
   },
 };

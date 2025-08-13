@@ -15,7 +15,7 @@
   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = "608916020621"
   NEXT_PUBLIC_FIREBASE_APP_ID = "1:608916020621:web:0fc2bad8adaa65a99c71c4"
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID = "G-CVYZRT7Y5Z"
-  NEXT_PUBLIC_SITE_URL = "https://same-cqh13rcjn98-latest.netlify.app"
+  NEXT_PUBLIC_SITE_URL = "https://maori-advent-calendar.netlify.app"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

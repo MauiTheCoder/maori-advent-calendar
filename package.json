@@ -1,7 +1,8 @@
 {
-  "name": "nextjs-shadcn",
-  "version": "0.1.0",
+  "name": "mahuru-activation-2025",
+  "version": "1.0.0",
   "private": true,
+  "description": "Mahuru Activation Activities 2025 - Te Reo Māori Learning Platform",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "build": "next build",

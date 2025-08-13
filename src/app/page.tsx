@@ -121,8 +121,8 @@ export default function Home() {
                   <span className="text-primary-foreground font-bold text-xl">🌿</span>
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold">Rā Katoa</h1>
-                  <p className="text-sm text-muted-foreground">Cultural Journey</p>
+                  <h1 className="text-2xl font-bold">Mahuru Activation 2025</h1>
+                  <p className="text-sm text-muted-foreground">Te Reo Māori Challenge</p>
                 </div>
               </div>
               <Badge variant="secondary" className="bg-accent text-accent-foreground">
@@ -181,8 +181,8 @@ export default function Home() {
                 <span className="text-primary-foreground font-bold text-xl">🌿</span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold">Rā Katoa</h1>
-                <p className="text-sm text-muted-foreground">30-Day Cultural Journey</p>
+                <h1 className="text-2xl font-bold">Mahuru Activation 2025</h1>
+                <p className="text-sm text-muted-foreground">30-Day Te Reo Māori Challenge</p>
               </div>
             </div>
             <Badge variant="secondary" className="bg-accent text-accent-foreground">
@@ -209,7 +209,7 @@ export default function Home() {
               >
                 Kia Ora!
                 <br />
-                <span className="text-primary">Discover Māori Culture</span>
+                <span className="text-primary">Master Te Reo Māori</span>
               </motion.h2>
 
               <motion.p
@@ -218,9 +218,9 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
                 className="text-xl text-muted-foreground leading-relaxed"
               >
-                Embark on a 30-day horizontal journey through Aotearoa's rich cultural heritage.
-                Learn te reo Māori, explore traditional stories, and connect with the spiritual
-                wisdom of indigenous New Zealand.
+                Join the Mahuru Challenge! Participate in 30 days of progressive te reo Māori
+                activation activities. From beginner pronunciation to advanced conversation,
+                strengthen your reo Māori journey with daily challenges and expert guidance.
               </motion.p>
 
               <motion.div
@@ -232,25 +232,25 @@ export default function Home() {
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <span className="w-2 h-2 bg-primary rounded-full"></span>
-                    <span>Interactive Cultural Activities</span>
+                    <span>Daily Language Activation</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="w-2 h-2 bg-primary rounded-full"></span>
-                    <span>Traditional Stories & Legends</span>
+                    <span>Progressive Skill Building</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="w-2 h-2 bg-primary rounded-full"></span>
-                    <span>Te Reo Māori Language</span>
+                    <span>Pronunciation & Conversation</span>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <span className="w-2 h-2 bg-accent rounded-full"></span>
-                    <span>Cultural Guardian Guides</span>
+                    <span>Expert Reo Māori Guidance</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="w-2 h-2 bg-accent rounded-full"></span>
-                    <span>Progress Tracking & Achievements</span>
+                    <span>Skill Level Progression</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="w-2 h-2 bg-accent rounded-full"></span>
@@ -274,8 +274,8 @@ export default function Home() {
                 </CardTitle>
                 <CardDescription>
                   {formMode === 'signup'
-                    ? 'Create your account and choose your Māori guardian to start exploring'
-                    : 'Sign in to continue your cultural adventure'
+                    ? 'Create your account and choose your skill level to begin the Mahuru Challenge'
+                    : 'Sign in to continue your te reo Māori journey'
                   }
                 </CardDescription>
               </CardHeader>
@@ -363,7 +363,7 @@ export default function Home() {
                           <span>{formMode === 'signup' ? 'Creating Account...' : 'Signing In...'}</span>
                         </div>
                       ) : (
-                        formMode === 'signup' ? 'Start Cultural Journey' : 'Sign In'
+                        formMode === 'signup' ? 'Join Mahuru Challenge' : 'Sign In'
                       )}
                     </Button>
 
@@ -408,15 +408,15 @@ export default function Home() {
           className="mt-16 text-center space-y-6"
         >
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4">Māori Cultural Learning Platform</h3>
+            <h3 className="text-2xl font-semibold mb-4">Mahuru Te Reo Māori Activation Platform</h3>
             <p className="text-muted-foreground leading-relaxed">
-              This authentic cultural journey is designed in partnership with Te Wānanga o Aotearoa.
-              Experience the beauty of Māori traditions through interactive activities, traditional stories,
-              and language learning that honors the rich heritage of Aotearoa New Zealand.
+              This authentic te reo Māori learning platform is designed in partnership with Te Wānanga o Aotearoa.
+              Participate in the annual Mahuru Challenge with structured daily activities that build your
+              confidence and fluency in te reo Māori through practical, real-world applications.
             </p>
             <div className="flex justify-center mt-8">
               <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2">
-                🌿 Culturally Authentic • Real Firebase Backend • Email Verification
+                🌿 Mahuru 2025 • Progressive Learning • Te Wānanga o Aotearoa
               </Badge>
             </div>
           </div>
