@@ -40,6 +40,7 @@ export interface User {
   total_points: number
   achievements: string[]
   completed_days?: number[]
+  last_activity_date?: string
   created_at: string
   updated_at: string
   email_verified: boolean
@@ -103,6 +104,7 @@ export const firebaseAuth = {
         total_points: 0,
         achievements: [],
         completed_days: [],
+        last_activity_date: null,
         email_verified: false,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
