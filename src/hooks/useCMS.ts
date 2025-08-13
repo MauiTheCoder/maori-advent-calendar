@@ -14,13 +14,14 @@ import {
   orderBy,
   onSnapshot
 } from 'firebase/firestore'
-import { 
-  ref, 
-  uploadBytes, 
-  getDownloadURL, 
-  deleteObject,
-  listAll
-} from 'firebase/storage'
+// Firebase Storage imports - uncomment when Firebase Storage is configured
+// import { 
+//   ref, 
+//   uploadBytes, 
+//   getDownloadURL, 
+//   deleteObject,
+//   listAll
+// } from 'firebase/storage'
 import { db } from '@/lib/firebase'
 import { 
   CMSContent, 

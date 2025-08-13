@@ -1,8 +1,8 @@
 {
-  "name": "mahuru-activation-2025",
+  "name": "maori-advent-calendar",
   "version": "1.0.0",
   "private": true,
-  "description": "Mahuru Activation Activities 2025 - Te Reo Māori Learning Platform",
+  "description": "Mahuru Māori 2025 - Te Reo Māori Learning Platform",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "build": "next build",

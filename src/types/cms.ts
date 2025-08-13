@@ -55,6 +55,10 @@ export interface LayoutSettings {
     }
     spacing?: Record<string, string>
     borderRadius?: string
+    heroCentered?: boolean
+    tipsExpanded?: boolean
+    completionAnimation?: boolean
+    [key: string]: any
   }
   visibility?: {
     [key: string]: boolean
