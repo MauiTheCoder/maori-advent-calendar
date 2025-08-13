@@ -454,8 +454,8 @@ export default function LayoutManagement() {
                               id={`${component.id}_${setting.key}`}
                               type="checkbox"
                               checked={editingSettings[`${component.id}_${setting.key}`] !== undefined 
-                                ? editingSettings[`${component.id}_${setting.key}`] 
-                                : setting.value || false
+                                ? Boolean(editingSettings[`${component.id}_${setting.key}`])
+                                : Boolean(setting.value) || false
                               }
                               onChange={(e) => handleInputChange(component.id, setting.key, e.target.checked)}
                               className="rounded"
