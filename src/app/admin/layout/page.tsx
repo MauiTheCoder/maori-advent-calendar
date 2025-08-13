@@ -270,8 +270,8 @@ export default function LayoutManagement() {
           : setting.value
 
         // Organize settings by type
-        const styles = settings.styles as Record<string, any>
-        const visibility = settings.visibility as Record<string, any>
+        const styles = settings.styles as Record<string, string | number | boolean | Record<string, string>>
+        const visibility = settings.visibility as Record<string, string | number | boolean>
         
         if (setting.type === 'color') {
           if (!styles.colors) styles.colors = {}
