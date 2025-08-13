@@ -347,8 +347,8 @@ export default function ContentManagement() {
                         <textarea
                           id={item.key}
                           value={editingContent[item.key] !== undefined 
-                            ? editingContent[item.key] 
-                            : item.value || ''
+                            ? String(editingContent[item.key])
+                            : String(item.value) || ''
                           }
                           onChange={(e) => handleInputChange(item.key, e.target.value)}
                           placeholder={item.placeholder}
@@ -360,8 +360,8 @@ export default function ContentManagement() {
                             id={item.key}
                             type="color"
                             value={editingContent[item.key] !== undefined 
-                              ? editingContent[item.key] 
-                              : item.value || '#000000'
+                              ? String(editingContent[item.key])
+                              : String(item.value) || '#000000'
                             }
                             onChange={(e) => handleInputChange(item.key, e.target.value)}
                             className="w-16 h-10"
@@ -369,8 +369,8 @@ export default function ContentManagement() {
                           <Input
                             type="text"
                             value={editingContent[item.key] !== undefined 
-                              ? editingContent[item.key] 
-                              : item.value || ''
+                              ? String(editingContent[item.key])
+                              : String(item.value) || ''
                             }
                             onChange={(e) => handleInputChange(item.key, e.target.value)}
                             placeholder={item.placeholder}
@@ -382,8 +382,8 @@ export default function ContentManagement() {
                           id={item.key}
                           type={item.type === 'url' ? 'url' : 'text'}
                           value={editingContent[item.key] !== undefined 
-                            ? editingContent[item.key] 
-                            : item.value || ''
+                            ? String(editingContent[item.key])
+                            : String(item.value) || ''
                           }
                           onChange={(e) => handleInputChange(item.key, e.target.value)}
                           placeholder={item.placeholder}
