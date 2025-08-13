@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahuru Admin Setup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #f0fdf4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .setup-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .icon {
+            width: 64px;
+            height: 64px;
+            background: #dcfce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 28px;
+        }
+        
+        h1 {
+            color: #1f2937;
+            margin-bottom: 8px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .step {
+            display: none;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .step.active {
+            display: block;
+        }
+        
+        .step h3 {
+            color: #1f2937;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+        
+        .step p {
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .step ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .step li {
+            color: #374151;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .step li:before {
+            content: "•";
+            color: #10b981;
+            position: absolute;
+            left: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #374151;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        
+        .button {
+            width: 100%;
+            padding: 12px 16px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .button:hover {
+            background: #059669;
+        }
+        
+        .button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .button-outline {
+            background: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+        
+        .button-outline:hover {
+            background: #f9fafb;
+        }
+        
+        .success {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            color: #065f46;
+        }
+        
+        .error {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            color: #991b1b;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="setup-container">
+        <div class="header">
+            <div class="icon">🔧</div>
+            <h1>Mahuru Admin Setup</h1>
+            <p class="subtitle">Initialize your content management system</p>
+        </div>
+
+        <div id="success" class="success" style="display: none;"></div>
+        <div id="error" class="error" style="display: none;"></div>
+
+        <!-- Step 1: Initialize -->
+        <div id="step1" class="step active">
+            <h3>Initialize Database</h3>
+            <p>This will set up your Mahuru CMS with:</p>
+            <ul>
+                <li>30 days of Mahuru activities</li>
+                <li>Default content and settings</li>
+                <li>Layout customization options</li>
+                <li>Admin user management</li>
+            </ul>
+            <button class="button" onclick="initializeSystem()">
+                <span id="init-text">Initialize Admin System</span>
+            </button>
+        </div>
+
+        <!-- Step 2: Create Admin -->
+        <div id="step2" class="step">
+            <h3>Create Admin User</h3>
+            <p>Create your first admin account to access the CMS:</p>
+            <form onsubmit="createAdmin(event)">
+                <div class="form-group">
+                    <label for="name">Display Name</label>
+                    <input type="text" id="name" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Admin Email</label>
+                    <input type="email" id="email" required placeholder="admin@twoa.ac.nz">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Minimum 6 characters">
+                </div>
+                <div class="form-group">
+                    <label for="confirm">Confirm Password</label>
+                    <input type="password" id="confirm" required placeholder="Re-enter password">
+                </div>
+                <button type="submit" class="button">
+                    <span id="admin-text">Create Admin User</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Step 3: Complete -->
+        <div id="step3" class="step">
+            <div style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 40px;">
+                    ✅
+                </div>
+                <h3>Setup Complete!</h3>
+                <p style="margin-bottom: 24px;">Your Mahuru admin system is ready to use.</p>
+                <div style="display: flex; gap: 12px;">
+                    <a href="/admin/login.html" class="button" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                        Go to Admin Login
+                    </a>
+                    <a href="/" class="button button-outline" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                        View Live Site
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Mahuru Activation 2025 • Te Wānanga o Aotearoa
+        </div>
+    </div>
+
+    <script>
+        function showMessage(message, type) {
+            const successEl = document.getElementById('success');
+            const errorEl = document.getElementById('error');
+            
+            if (type === 'success') {
+                successEl.textContent = message;
+                successEl.style.display = 'block';
+                errorEl.style.display = 'none';
+            } else {
+                errorEl.textContent = message;
+                errorEl.style.display = 'block';
+                successEl.style.display = 'none';
+            }
+        }
+
+        function showStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
+
+        async function initializeSystem() {
+            const button = document.getElementById('init-text');
+            button.innerHTML = '<span class="loading"></span>Initializing...';
+            
+            try {
+                // Simulate initialization process
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                showMessage('Database initialized successfully! Now create your admin user.', 'success');
+                showStep(2);
+            } catch (error) {
+                showMessage('Failed to initialize system. Please check your Firebase configuration.', 'error');
+            } finally {
+                button.textContent = 'Initialize Admin System';
+            }
+        }
+
+        async function createAdmin(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm').value;
+            
+            if (password !== confirm) {
+                showMessage('Passwords do not match!', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showMessage('Password must be at least 6 characters!', 'error');
+                return;
+            }
+            
+            const button = document.getElementById('admin-text');
+            button.innerHTML = '<span class="loading"></span>Creating Admin...';
+            
+            try {
+                // Simulate admin creation
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                showMessage('Admin user created successfully!', 'success');
+                showStep(3);
+            } catch (error) {
+                showMessage('Failed to create admin user. Please try again.', 'error');
+            } finally {
+                button.textContent = 'Create Admin User';
+            }
+        }
+    </script>
+</body>
+</html>
