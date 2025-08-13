@@ -396,8 +396,8 @@ export default function LayoutManagement() {
                               id={`${component.id}_${setting.key}`}
                               type="color"
                               value={editingSettings[`${component.id}_${setting.key}`] !== undefined 
-                                ? editingSettings[`${component.id}_${setting.key}`] 
-                                : setting.value || '#000000'
+                                ? String(editingSettings[`${component.id}_${setting.key}`])
+                                : String(setting.value) || '#000000'
                               }
                               onChange={(e) => handleInputChange(component.id, setting.key, e.target.value)}
                               className="w-16 h-10"
@@ -405,8 +405,8 @@ export default function LayoutManagement() {
                             <Input
                               type="text"
                               value={editingSettings[`${component.id}_${setting.key}`] !== undefined 
-                                ? editingSettings[`${component.id}_${setting.key}`] 
-                                : setting.value || ''
+                                ? String(editingSettings[`${component.id}_${setting.key}`])
+                                : String(setting.value) || ''
                               }
                               onChange={(e) => handleInputChange(component.id, setting.key, e.target.value)}
                               className="flex-1 font-mono text-sm"
@@ -422,8 +422,8 @@ export default function LayoutManagement() {
                               max={setting.max}
                               step={setting.step}
                               value={editingSettings[`${component.id}_${setting.key}`] !== undefined 
-                                ? editingSettings[`${component.id}_${setting.key}`] 
-                                : setting.value || 0
+                                ? Number(editingSettings[`${component.id}_${setting.key}`]) || 0
+                                : Number(setting.value) || 0
                               }
                               onChange={(e) => handleInputChange(component.id, setting.key, parseInt(e.target.value))}
                               className="w-24"
@@ -436,8 +436,8 @@ export default function LayoutManagement() {
                           <select
                             id={`${component.id}_${setting.key}`}
                             value={editingSettings[`${component.id}_${setting.key}`] !== undefined 
-                              ? editingSettings[`${component.id}_${setting.key}`] 
-                              : setting.value || ''
+                              ? String(editingSettings[`${component.id}_${setting.key}`])
+                              : String(setting.value) || ''
                             }
                             onChange={(e) => handleInputChange(component.id, setting.key, e.target.value)}
                             className="w-full p-2 border border-border rounded-md"
@@ -467,8 +467,8 @@ export default function LayoutManagement() {
                             id={`${component.id}_${setting.key}`}
                             type="text"
                             value={editingSettings[`${component.id}_${setting.key}`] !== undefined 
-                              ? editingSettings[`${component.id}_${setting.key}`] 
-                              : setting.value || ''
+                              ? String(editingSettings[`${component.id}_${setting.key}`])
+                              : String(setting.value) || ''
                             }
                             onChange={(e) => handleInputChange(component.id, setting.key, e.target.value)}
                           />
