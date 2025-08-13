@@ -45,7 +45,17 @@ export default function Journey() {
   const fetchActivities = async () => {
     try {
       console.log('Fetching activities from Firebase...')
+      console.log('Profile difficulty level:', profile?.difficulty_level)
       const activitiesRef = collection(db, 'activities')
+      
+      // First try to get all activities to see what's in the database
+      const allActivitiesQuery = query(activitiesRef, orderBy('day'))
+      const allSnapshot = await getDocs(allActivitiesQuery)
+      console.log('All activities in database:', allSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })))
+      
       const q = query(
         activitiesRef,
         where('difficulty', '==', profile?.difficulty_level || 'beginner'),
@@ -67,7 +77,7 @@ export default function Journey() {
         })
       })
       
-      console.log('Fetched activities:', fetchedActivities)
+      console.log('Fetched activities for difficulty level:', profile?.difficulty_level, fetchedActivities)
       setActivities(fetchedActivities)
     } catch (error) {
       console.error('Error fetching activities:', error)
@@ -369,7 +379,14 @@ export default function Journey() {
                       Day {selectedDay}: {(() => {
                         const dayNode = dayNodes[selectedDay - 1];
                         const activity = activities.find(a => a.day === selectedDay);
-                        return activity?.title || dayNode?.title?.replace(/^Day \d+:\s*/, '') || 'Activity';
+                        console.log('Debug popup title:', {
+                          selectedDay,
+                          activitiesLength: activities.length,
+                          activity: activity,
+                          dayNodeTitle: dayNode?.title,
+                          allActivities: activities
+                        });
+                        return activity?.title || dayNode?.title?.replace(/^Day \d+$/, '') || 'Activity';
                       })()}
                     </CardTitle>
                     <CardDescription className="flex items-center space-x-2 mt-1">
