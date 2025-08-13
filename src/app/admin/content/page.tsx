@@ -57,7 +57,7 @@ export default function ContentManagement() {
           key: 'site_title',
           label: 'Site Title',
           type: 'text',
-          value: content['site_title']?.value || 'Mahuru Activation 2025',
+          value: ((content['site_title']?.value as string) || 'Mahuru Activation 2025',
           placeholder: 'Mahuru Activation 2025',
           description: 'Main site title displayed in header'
         },
@@ -65,7 +65,7 @@ export default function ContentManagement() {
           key: 'site_subtitle',
           label: 'Site Subtitle',
           type: 'text',
-          value: content['site_subtitle']?.value || '30-Day Te Reo Māori Challenge',
+          value: ((content['site_subtitle']?.value as string) || '30-Day Te Reo Māori Challenge',
           placeholder: '30-Day Te Reo Māori Challenge',
           description: 'Subtitle shown below main title'
         },
@@ -73,28 +73,28 @@ export default function ContentManagement() {
           key: 'hero_heading',
           label: 'Hero Heading',
           type: 'text',
-          value: content['hero_heading']?.value || 'Kia Ora!\nMaster Te Reo Māori',
+          value: ((content['hero_heading']?.value as string) || 'Kia Ora!\nMaster Te Reo Māori',
           placeholder: 'Kia Ora!\nMaster Te Reo Māori'
         },
         {
           key: 'hero_description',
           label: 'Hero Description',
           type: 'textarea',
-          value: content['hero_description']?.value || 'Join the Mahuru Challenge! Participate in 30 days of progressive te reo Māori activation activities. From beginner pronunciation to advanced conversation, strengthen your reo Māori journey with daily challenges and expert guidance.',
+          value: ((content['hero_description']?.value as string) || 'Join the Mahuru Challenge! Participate in 30 days of progressive te reo Māori activation activities. From beginner pronunciation to advanced conversation, strengthen your reo Māori journey with daily challenges and expert guidance.',
           placeholder: 'Hero section description text'
         },
         {
           key: 'signup_title',
           label: 'Signup Form Title',
           type: 'text',
-          value: content['signup_title']?.value || 'Begin Your Cultural Journey',
+          value: ((content['signup_title']?.value as string) || 'Begin Your Cultural Journey',
           placeholder: 'Begin Your Cultural Journey'
         },
         {
           key: 'signup_description',
           label: 'Signup Form Description',
           type: 'textarea',
-          value: content['signup_description']?.value || 'Create your account and choose your skill level to begin the Mahuru Challenge',
+          value: ((content['signup_description']?.value as string) || 'Create your account and choose your skill level to begin the Mahuru Challenge',
           placeholder: 'Signup form description'
         }
       ]
@@ -108,42 +108,42 @@ export default function ContentManagement() {
           key: 'feature_1_title',
           label: 'Feature 1: Title',
           type: 'text',
-          value: content['feature_1_title']?.value || 'Daily Language Activation',
+          value: ((content['feature_1_title']?.value as string) || 'Daily Language Activation',
           placeholder: 'Daily Language Activation'
         },
         {
           key: 'feature_2_title',
           label: 'Feature 2: Title',
           type: 'text',
-          value: content['feature_2_title']?.value || 'Progressive Skill Building',
+          value: ((content['feature_2_title']?.value as string) || 'Progressive Skill Building',
           placeholder: 'Progressive Skill Building'
         },
         {
           key: 'feature_3_title',
           label: 'Feature 3: Title',
           type: 'text',
-          value: content['feature_3_title']?.value || 'Pronunciation & Conversation',
+          value: (content['feature_3_title']?.value as string) || 'Pronunciation & Conversation',
           placeholder: 'Pronunciation & Conversation'
         },
         {
           key: 'feature_4_title',
           label: 'Feature 4: Title',
           type: 'text',
-          value: content['feature_4_title']?.value || 'Expert Reo Māori Guidance',
+          value: (content['feature_4_title']?.value as string) || 'Expert Reo Māori Guidance',
           placeholder: 'Expert Reo Māori Guidance'
         },
         {
           key: 'feature_5_title',
           label: 'Feature 5: Title',
           type: 'text',
-          value: content['feature_5_title']?.value || 'Skill Level Progression',
+          value: (content['feature_5_title']?.value as string) || 'Skill Level Progression',
           placeholder: 'Skill Level Progression'
         },
         {
           key: 'feature_6_title',
           label: 'Feature 6: Title',
           type: 'text',
-          value: content['feature_6_title']?.value || 'Real-time Sync Across Devices',
+          value: (content['feature_6_title']?.value as string) || 'Real-time Sync Across Devices',
           placeholder: 'Real-time Sync Across Devices'
         }
       ]
@@ -157,21 +157,21 @@ export default function ContentManagement() {
           key: 'about_title',
           label: 'About Section Title',
           type: 'text',
-          value: content['about_title']?.value || 'Mahuru Te Reo Māori Activation Platform',
+          value: (content['about_title']?.value as string) || 'Mahuru Te Reo Māori Activation Platform',
           placeholder: 'Mahuru Te Reo Māori Activation Platform'
         },
         {
           key: 'about_description',
           label: 'About Description',
           type: 'textarea',
-          value: content['about_description']?.value || 'This authentic te reo Māori learning platform is designed in partnership with Te Wānanga o Aotearoa. Participate in the annual Mahuru Challenge with structured daily activities that build your confidence and fluency in te reo Māori through practical, real-world applications.',
+          value: (content['about_description']?.value as string) || 'This authentic te reo Māori learning platform is designed in partnership with Te Wānanga o Aotearoa. Participate in the annual Mahuru Challenge with structured daily activities that build your confidence and fluency in te reo Māori through practical, real-world applications.',
           placeholder: 'About section description'
         },
         {
           key: 'footer_badge',
           label: 'Footer Badge Text',
           type: 'text',
-          value: content['footer_badge']?.value || '🌿 Mahuru 2025 • Progressive Learning • Te Wānanga o Aotearoa',
+          value: (content['footer_badge']?.value as string) || '🌿 Mahuru 2025 • Progressive Learning • Te Wānanga o Aotearoa',
           placeholder: 'Footer badge text'
         }
       ]
@@ -185,42 +185,42 @@ export default function ContentManagement() {
           key: 'activity_tips_title',
           label: 'Tips Section Title',
           type: 'text',
-          value: content['activity_tips_title']?.value || '💡 Helpful Tips',
+          value: (content['activity_tips_title']?.value as string) || '💡 Helpful Tips',
           placeholder: '💡 Helpful Tips'
         },
         {
           key: 'activity_tips_1',
           label: 'Tip 1',
           type: 'text',
-          value: content['activity_tips_1']?.value || 'Take your time and practice at your own pace',
+          value: (content['activity_tips_1']?.value as string) || 'Take your time and practice at your own pace',
           placeholder: 'First helpful tip'
         },
         {
           key: 'activity_tips_2',
           label: 'Tip 2',
           type: 'text',
-          value: content['activity_tips_2']?.value || 'Use the Mahuru website resources for additional support',
+          value: (content['activity_tips_2']?.value as string) || 'Use the Mahuru website resources for additional support',
           placeholder: 'Second helpful tip'
         },
         {
           key: 'activity_tips_3',
           label: 'Tip 3',
           type: 'text',
-          value: content['activity_tips_3']?.value || 'Share your progress with whānau and friends',
+          value: (content['activity_tips_3']?.value as string) || 'Share your progress with whānau and friends',
           placeholder: 'Third helpful tip'
         },
         {
           key: 'activity_tips_4',
           label: 'Tip 4',
           type: 'text',
-          value: content['activity_tips_4']?.value || 'Remember: kia kaha (be strong) in your learning journey!',
+          value: (content['activity_tips_4']?.value as string) || 'Remember: kia kaha (be strong) in your learning journey!',
           placeholder: 'Fourth helpful tip'
         },
         {
           key: 'completion_message',
           label: 'Completion Message',
           type: 'text',
-          value: content['completion_message']?.value || 'Ka pai! Well done!',
+          value: (content['completion_message']?.value as string) || 'Ka pai! Well done!',
           placeholder: 'Ka pai! Well done!'
         }
       ]
