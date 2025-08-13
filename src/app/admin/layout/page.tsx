@@ -275,22 +275,26 @@ export default function LayoutManagement() {
         
         if (setting.type === 'color') {
           if (!styles.colors) styles.colors = {}
-          styles.colors[setting.key.replace('_color', '')] = value
+          const colors = styles.colors as Record<string, string | number | boolean>
+          colors[setting.key.replace('_color', '')] = value
         } else if (setting.type === 'boolean' && setting.key.startsWith('show_')) {
           visibility[setting.key] = value
         } else if (setting.key.includes('font')) {
           if (!styles.fonts) styles.fonts = {}
+          const fonts = styles.fonts as Record<string, string | Record<string, string>>
           if (setting.key.includes('size')) {
-            if (!styles.fonts.sizes) styles.fonts.sizes = {}
-            styles.fonts.sizes[setting.key.replace('_size', '')] = `${value}px`
+            if (!fonts.sizes) fonts.sizes = {}
+            const sizes = fonts.sizes as Record<string, string>
+            sizes[setting.key.replace('_size', '')] = `${value}px`
           } else {
-            styles.fonts[setting.key.replace('_font', '')] = value
+            (fonts as Record<string, string | number | boolean>)[setting.key.replace('_font', '')] = value
           }
         } else if (setting.key.includes('spacing')) {
           if (!styles.spacing) styles.spacing = {}
-          styles.spacing[setting.key.replace('_spacing', '')] = `${value}px`
+          const spacing = styles.spacing as Record<string, string>
+          spacing[setting.key.replace('_spacing', '')] = `${value}px`
         } else {
-          styles[setting.key] = typeof value === 'number' ? `${value}px` : value
+          (styles as Record<string, string | number | boolean>)[setting.key] = typeof value === 'number' ? `${value}px` : value
         }
       })
 
