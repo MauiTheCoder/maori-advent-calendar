@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { collection, getDocs, query, where, orderBy } from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 
 interface DayNode {
@@ -48,25 +48,13 @@ export default function Journey() {
       console.log('Profile difficulty level:', profile?.difficulty_level)
       const activitiesRef = collection(db, 'activities')
       
-      // First try to get all activities to see what's in the database
-      const allActivitiesQuery = query(activitiesRef, orderBy('day'))
-      const allSnapshot = await getDocs(allActivitiesQuery)
-      console.log('All activities in database:', allSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })))
+      // Get all activities first (to avoid index requirement)
+      const querySnapshot = await getDocs(activitiesRef)
       
-      const q = query(
-        activitiesRef,
-        where('difficulty', '==', profile?.difficulty_level || 'beginner'),
-        orderBy('day')
-      )
-      const querySnapshot = await getDocs(q)
-      
-      const fetchedActivities: Activity[] = []
+      const allActivities: Activity[] = []
       querySnapshot.forEach((doc) => {
         const data = doc.data()
-        fetchedActivities.push({
+        allActivities.push({
           id: doc.id,
           day: data.day,
           title: data.title,
@@ -77,8 +65,16 @@ export default function Journey() {
         })
       })
       
-      console.log('Fetched activities for difficulty level:', profile?.difficulty_level, fetchedActivities)
-      setActivities(fetchedActivities)
+      console.log('All activities in database:', allActivities)
+      
+      // Filter by difficulty level in JavaScript
+      const userDifficulty = profile?.difficulty_level || 'beginner'
+      const filteredActivities = allActivities
+        .filter(activity => activity.difficulty === userDifficulty)
+        .sort((a, b) => a.day - b.day)
+      
+      console.log('Filtered activities for difficulty level:', userDifficulty, filteredActivities)
+      setActivities(filteredActivities)
     } catch (error) {
       console.error('Error fetching activities:', error)
     } finally {
