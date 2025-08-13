@@ -270,24 +270,27 @@ export default function LayoutManagement() {
           : setting.value
 
         // Organize settings by type
+        const styles = settings.styles as Record<string, any>
+        const visibility = settings.visibility as Record<string, any>
+        
         if (setting.type === 'color') {
-          if (!settings.styles.colors) settings.styles.colors = {}
-          settings.styles.colors[setting.key.replace('_color', '')] = value
+          if (!styles.colors) styles.colors = {}
+          styles.colors[setting.key.replace('_color', '')] = value
         } else if (setting.type === 'boolean' && setting.key.startsWith('show_')) {
-          settings.visibility[setting.key] = value
+          visibility[setting.key] = value
         } else if (setting.key.includes('font')) {
-          if (!settings.styles.fonts) settings.styles.fonts = {}
+          if (!styles.fonts) styles.fonts = {}
           if (setting.key.includes('size')) {
-            if (!settings.styles.fonts.sizes) settings.styles.fonts.sizes = {}
-            settings.styles.fonts.sizes[setting.key.replace('_size', '')] = `${value}px`
+            if (!styles.fonts.sizes) styles.fonts.sizes = {}
+            styles.fonts.sizes[setting.key.replace('_size', '')] = `${value}px`
           } else {
-            settings.styles.fonts[setting.key.replace('_font', '')] = value
+            styles.fonts[setting.key.replace('_font', '')] = value
           }
         } else if (setting.key.includes('spacing')) {
-          if (!settings.styles.spacing) settings.styles.spacing = {}
-          settings.styles.spacing[setting.key.replace('_spacing', '')] = `${value}px`
+          if (!styles.spacing) styles.spacing = {}
+          styles.spacing[setting.key.replace('_spacing', '')] = `${value}px`
         } else {
-          settings.styles[setting.key] = typeof value === 'number' ? `${value}px` : value
+          styles[setting.key] = typeof value === 'number' ? `${value}px` : value
         }
       })
 
