@@ -47,7 +47,7 @@ export const useCMSContent = () => {
         setContent(contentMap)
         setLoading(false)
       },
-      (error) => {
+      (error: unknown) => {
         console.error('Error fetching CMS content:', error)
         setLoading(false)
       }
@@ -69,7 +69,7 @@ export const useCMSContent = () => {
 
       const docRef = doc(db, 'cms_content', key)
       await setDoc(docRef, contentData, { merge: true })
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating content:', error)
       throw error
     }
@@ -102,7 +102,7 @@ export const useActivities = () => {
         setActivities(activitiesData)
         setLoading(false)
       },
-      (error) => {
+      (error: unknown) => {
         console.error('Error fetching activities:', error)
         setLoading(false)
       }
@@ -120,7 +120,7 @@ export const useActivities = () => {
       }
 
       await setDoc(doc(db, 'activities', `day-${day}`), activityData, { merge: true })
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating activity:', error)
       throw error
     }
@@ -154,7 +154,7 @@ export const useLayoutSettings = () => {
         setLayouts(layoutsMap)
         setLoading(false)
       },
-      (error) => {
+      (error: unknown) => {
         console.error('Error fetching layout settings:', error)
         setLoading(false)
       }
@@ -172,7 +172,7 @@ export const useLayoutSettings = () => {
       }
 
       await setDoc(doc(db, 'layout_settings', component), layoutData, { merge: true })
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating layout:', error)
       throw error
     }
@@ -205,7 +205,7 @@ export const useMediaAssets = () => {
         setAssets(assetsData)
         setLoading(false)
       },
-      (error) => {
+      (error: unknown) => {
         console.error('Error fetching media assets:', error)
         setLoading(false)
       }
@@ -219,7 +219,7 @@ export const useMediaAssets = () => {
       // This would need Firebase Storage setup
       // For now, returning a mock implementation
       throw new Error('Firebase Storage not implemented yet')
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error uploading asset:', error)
       throw error
     }
@@ -228,7 +228,7 @@ export const useMediaAssets = () => {
   const deleteAsset = async (assetId: string): Promise<void> => {
     try {
       await deleteDoc(doc(db, 'media_assets', assetId))
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting asset:', error)
       throw error
     }
@@ -255,7 +255,7 @@ export const useGlobalSettings = () => {
         }
         setLoading(false)
       },
-      (error) => {
+      (error: unknown) => {
         console.error('Error fetching global settings:', error)
         setLoading(false)
       }
@@ -272,7 +272,7 @@ export const useGlobalSettings = () => {
       }
 
       await setDoc(doc(db, 'global_settings', 'main'), settingsData, { merge: true })
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating global settings:', error)
       throw error
     }

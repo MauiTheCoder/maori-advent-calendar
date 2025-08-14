@@ -220,7 +220,7 @@ export const userProfile = {
         return docSnap.data() as User
       }
       return null
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error getting user profile:', error)
       return null
     }
@@ -259,7 +259,7 @@ export const userProfile = {
       } else {
         callback(null)
       }
-    }, (error) => {
+    }, (error: unknown) => {
       console.error('Error listening to user profile:', error)
       callback(null)
     })

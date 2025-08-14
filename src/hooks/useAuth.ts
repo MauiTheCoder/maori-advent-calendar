@@ -30,7 +30,7 @@ export function useAuth() {
       if (firebaseUser) {
         try {
           await loadUserData(firebaseUser)
-        } catch (err) {
+        } catch (err: unknown) {
           setState(prev => ({
             ...prev,
             error: err instanceof Error ? err.message : 'Failed to load user data',
@@ -84,7 +84,7 @@ export function useAuth() {
         loading: false,
         error: null,
       })
-    } catch (err) {
+    } catch (err: unknown) {
       throw err
     }
   }
@@ -94,7 +94,7 @@ export function useAuth() {
       setState(prev => ({ ...prev, loading: true, error: null }))
       const result = await firebaseAuth.signUp(email, password, name)
       return result
-    } catch (err) {
+    } catch (err: unknown) {
       const error = err instanceof Error ? err.message : 'Sign up failed'
       setState(prev => ({ ...prev, error, loading: false }))
       throw err
@@ -106,7 +106,7 @@ export function useAuth() {
       setState(prev => ({ ...prev, loading: true, error: null }))
       const result = await firebaseAuth.signIn(email, password)
       return result
-    } catch (err) {
+    } catch (err: unknown) {
       const error = err instanceof Error ? err.message : 'Sign in failed'
       setState(prev => ({ ...prev, error, loading: false }))
       throw err
@@ -117,7 +117,7 @@ export function useAuth() {
     try {
       setState(prev => ({ ...prev, loading: true, error: null }))
       await firebaseAuth.signOut()
-    } catch (err) {
+    } catch (err: unknown) {
       const error = err instanceof Error ? err.message : 'Sign out failed'
       setState(prev => ({ ...prev, error, loading: false }))
       throw err
@@ -145,7 +145,7 @@ export function useAuth() {
       }))
 
       return updatedProfile
-    } catch (err) {
+    } catch (err: unknown) {
       const error = err instanceof Error ? err.message : 'Failed to update profile'
       setState(prev => ({ ...prev, error, loading: false }))
       throw err
@@ -155,7 +155,7 @@ export function useAuth() {
   const resetPassword = async (email: string) => {
     try {
       await firebaseAuth.resetPassword(email)
-    } catch (err) {
+    } catch (err: unknown) {
       throw err
     }
   }
@@ -163,7 +163,7 @@ export function useAuth() {
   const resendVerification = async () => {
     try {
       await firebaseAuth.resendVerification()
-    } catch (err) {
+    } catch (err: unknown) {
       throw err
     }
   }
@@ -171,7 +171,7 @@ export function useAuth() {
   const updatePassword = async (currentPassword: string, newPassword: string) => {
     try {
       await firebaseAuth.updatePassword(currentPassword, newPassword)
-    } catch (err) {
+    } catch (err: unknown) {
       throw err
     }
   }
@@ -208,7 +208,7 @@ export function useProgress() {
       const result = await progress.completeActivity(user.uid, activityId, score, timeTaken)
 
       return result
-    } catch (err) {
+    } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to complete activity'
       setError(errorMsg)
       throw err
@@ -228,7 +228,7 @@ export function useProgress() {
       const result = await progress.getUserProgress(user.uid)
 
       return result
-    } catch (err) {
+    } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to load progress'
       setError(errorMsg)
       return []
@@ -243,7 +243,7 @@ export function useProgress() {
     try {
       const { progress } = await import('@/lib/firebase-auth')
       return await progress.isActivityCompleted(user.uid, activityId)
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error checking activity completion:', err)
       return false
     }
@@ -272,7 +272,7 @@ export function useCharacters() {
 
         const data = await characters.getAll()
         setCharacterList(data)
-      } catch (err) {
+      } catch (err: unknown) {
         const errorMsg = err instanceof Error ? err.message : 'Failed to load characters'
         setError(errorMsg)
       } finally {

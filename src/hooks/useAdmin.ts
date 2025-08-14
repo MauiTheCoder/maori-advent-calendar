@@ -39,7 +39,7 @@ export const useAdmin = () => {
           } else {
             setAdminUser(null)
           }
-        } catch (error) {
+        } catch (error: unknown) {
           console.error('Error fetching admin user:', error)
           setAdminUser(null)
         }
@@ -59,7 +59,7 @@ export const useAdmin = () => {
     try {
       const adminDoc = await getDoc(doc(db, 'admin_users', user.uid))
       return adminDoc.exists()
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error checking admin access:', error)
       return false
     }
@@ -78,7 +78,7 @@ export const useAdmin = () => {
 
       await setDoc(doc(db, 'admin_users', user.uid), updatedData, { merge: true })
       setAdminUser(updatedData)
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating admin profile:', error)
       throw error
     }
@@ -93,7 +93,7 @@ export const useAdmin = () => {
       }
 
       await setDoc(doc(db, 'admin_users', uid), newAdminUser)
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error creating admin user:', error)
       throw error
     }

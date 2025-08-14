@@ -31,7 +31,7 @@ export const needsSeeding = async (): Promise<boolean> => {
   try {
     const charactersSnapshot = await getDocs(collection(db, 'characters'))
     return charactersSnapshot.empty
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error checking if database needs seeding:', error)
     return false
   }
