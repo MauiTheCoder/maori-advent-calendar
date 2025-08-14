@@ -1,12 +1,13 @@
 'use client'
 
 import React, { createContext, useContext, ReactNode } from 'react'
+import { User as FirebaseUser } from 'firebase/auth'
 import { useAuth, AuthState } from '@/hooks/useAuth'
 import { User } from '@/lib/firebase-auth'
 
 interface AuthContextType extends AuthState {
-  signUp: (email: string, password: string, name: string) => Promise<{ user: any; needsVerification: boolean }>
-  signIn: (email: string, password: string) => Promise<any>
+  signUp: (email: string, password: string, name: string) => Promise<{ user: FirebaseUser; needsVerification: boolean }>
+  signIn: (email: string, password: string) => Promise<FirebaseUser>
   signOut: () => Promise<void>
   updateProfile: (updates: Partial<User>) => Promise<User>
   resetPassword: (email: string) => Promise<void>
