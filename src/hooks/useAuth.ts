@@ -89,7 +89,7 @@ export function useAuth() {
     }
   }
 
-  const signUp = async (email: string, password: string, name: string) => {
+  const signUp = async (email: string, password: string, name: string): Promise<{ user: FirebaseUser; needsVerification: boolean }> => {
     try {
       setState(prev => ({ ...prev, loading: true, error: null }))
       const result = await firebaseAuth.signUp(email, password, name)
@@ -101,7 +101,7 @@ export function useAuth() {
     }
   }
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string): Promise<FirebaseUser> => {
     try {
       setState(prev => ({ ...prev, loading: true, error: null }))
       const result = await firebaseAuth.signIn(email, password)
