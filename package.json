@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "bunx tsc --noEmit && next lint",
-    "format": "bunx biome format --write"
+    "format": "bunx biome format --write",
+    "firebase:setup": "node scripts/setup-firebase.js",
+    "firebase:validate": "node scripts/validate-firebase.js",
+    "firebase:check": "bun run firebase:validate && echo 'Firebase configuration is ready!'",
+    "setup": "bun run firebase:setup && bun run firebase:validate"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
