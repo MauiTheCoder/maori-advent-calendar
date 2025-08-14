@@ -1,13 +1,13 @@
 import { doc, setDoc, collection, getDocs } from 'firebase/firestore'
 import { db } from './firebase'
-import { mahuruActivities2025 } from '@/data/mahuru-activities'
+import { mahuruActivities2025 } from '../data/mahuru-activities'
 import { 
   AdminUser, 
   ActivityContent, 
   GlobalSettings, 
   CMSContent,
   LayoutSettings 
-} from '@/types/cms'
+} from '../types/cms'
 
 // Initialize admin system with default data
 export const initializeAdminSystem = async (): Promise<void> => {
