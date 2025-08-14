@@ -5,6 +5,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminProvider } from "@/contexts/AdminContext";
 import { CMSProvider } from "@/contexts/CMSContext";
 import FirebaseInitializer from "@/components/firebase/FirebaseInitializer";
+import EnvDebug from "@/components/debug/EnvDebug";
 
 export default function ClientBody({
   children,
@@ -21,6 +22,7 @@ export default function ClientBody({
     <AuthProvider>
       <AdminProvider>
         <CMSProvider>
+          <EnvDebug />
           <FirebaseInitializer />
           <div className="antialiased">{children}</div>
         </CMSProvider>
