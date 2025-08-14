@@ -5,12 +5,21 @@ import { validateFirebaseConfig, logEnvironmentStatus, isDevelopment } from './e
 
 // Get Firebase configuration with fallback
 function getFirebaseConfig() {
-  // Try to get from environment variables first
-  if (process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
+  // Check if all required environment variables exist
+  const hasRequiredEnvVars = !!(
+    process.env.NEXT_PUBLIC_FIREBASE_API_KEY &&
+    process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN &&
+    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID &&
+    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET &&
+    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID &&
+    process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+  )
+  
+  if (hasRequiredEnvVars) {
     try {
       return validateFirebaseConfig()
     } catch (error) {
-      console.warn('Environment validation failed:', error)
+      console.warn('Environment validation failed, using fallback:', error)
     }
   }
   

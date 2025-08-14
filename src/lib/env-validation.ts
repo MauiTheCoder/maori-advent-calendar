@@ -33,25 +33,17 @@ export function validateFirebaseConfig(): FirebaseConfig {
   if (!config.appId) missingVars.push('NEXT_PUBLIC_FIREBASE_APP_ID')
 
   if (missingVars.length > 0) {
-    // TEMPORARY FALLBACK: Use hardcoded config for production until env vars are fixed
-    if (typeof window !== 'undefined' && window.location.hostname.includes('netlify.app')) {
-      console.warn('⚠️ Using fallback Firebase configuration. Please set environment variables in Netlify dashboard.')
-      return {
-        apiKey: "AIzaSyBp2XYYHYqTc9JykhiTdhmLywGTdFQPhhc",
-        authDomain: "mahuru-maori-2025.firebaseapp.com",
-        projectId: "mahuru-maori-2025",
-        storageBucket: "mahuru-maori-2025.firebasestorage.app",
-        messagingSenderId: "608916020621",
-        appId: "1:608916020621:web:f5671e3d57a838a49c71c4",
-        measurementId: "G-NJN363BV69"
-      }
+    // Always use fallback configuration when environment variables are missing
+    console.warn('⚠️ Using fallback Firebase configuration. Missing variables:', missingVars.join(', '))
+    return {
+      apiKey: "AIzaSyBp2XYYHYqTc9JykhiTdhmLywGTdFQPhhc",
+      authDomain: "mahuru-maori-2025.firebaseapp.com",
+      projectId: "mahuru-maori-2025",
+      storageBucket: "mahuru-maori-2025.firebasestorage.app",
+      messagingSenderId: "608916020621",
+      appId: "1:608916020621:web:f5671e3d57a838a49c71c4",
+      measurementId: "G-NJN363BV69"
     }
-    
-    throw new Error(
-      `Missing required Firebase environment variables: ${missingVars.join(', ')}\n\n` +
-      'Please create a .env.local file with your Firebase configuration. ' +
-      'See .env.local.example for the required format.'
-    )
   }
 
   return config as FirebaseConfig
