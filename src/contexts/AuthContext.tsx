@@ -2,10 +2,18 @@
 
 import React, { createContext, useContext, ReactNode } from 'react'
 import { User as FirebaseUser } from 'firebase/auth'
-import { useAuth, AuthState } from '@/hooks/useAuth'
-import { User } from '@/lib/firebase-auth'
+import { useAuth } from '@/hooks/useAuth'
+import { User, Character } from '@/lib/firebase-auth'
 
-interface AuthContextType extends AuthState {
+interface AuthContextType {
+  // AuthState properties
+  user: FirebaseUser | null
+  profile: User | null
+  character: Character | null
+  loading: boolean
+  error: string | null
+  
+  // Auth methods
   signUp: (email: string, password: string, name: string) => Promise<{ user: FirebaseUser; needsVerification: boolean }>
   signIn: (email: string, password: string) => Promise<FirebaseUser>
   signOut: () => Promise<void>
@@ -13,6 +21,8 @@ interface AuthContextType extends AuthState {
   resetPassword: (email: string) => Promise<void>
   resendVerification: () => Promise<void>
   updatePassword: (currentPassword: string, newPassword: string) => Promise<void>
+  
+  // Computed properties
   isAuthenticated: boolean
   hasProfile: boolean
   emailVerified: boolean
