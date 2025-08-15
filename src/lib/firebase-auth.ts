@@ -274,10 +274,17 @@ export const characters = {
       const q = query(collection(db, 'characters'), orderBy('created_at', 'asc'))
       const querySnapshot = await getDocs(q)
 
-      return querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      } as Character))
+      return querySnapshot.docs.map(doc => {
+        const data = doc.data()
+        return {
+          id: doc.id,
+          name: data.name || '',
+          description: data.description || '',
+          image_url: data.image_url || data.image || '',
+          cultural_significance: data.cultural_significance || '',
+          created_at: data.created_at || new Date().toISOString()
+        } as Character
+      })
     } catch (error) {
       console.error('Error getting characters:', error)
       return []
@@ -291,9 +298,14 @@ export const characters = {
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
+        const data = docSnap.data()
         return {
           id: docSnap.id,
-          ...docSnap.data()
+          name: data.name || '',
+          description: data.description || '',
+          image_url: data.image_url || data.image || '',
+          cultural_significance: data.cultural_significance || '',
+          created_at: data.created_at || new Date().toISOString()
         } as Character
       }
       return null

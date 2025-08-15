@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { User as FirebaseUser, onAuthStateChanged } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { firebaseAuth, userProfile, User, Character, characters } from '@/lib/firebase-auth'
+import { logger } from '@/lib/logger'
 
 export interface AuthState {
   user: FirebaseUser | null
@@ -23,45 +24,60 @@ export function useAuth() {
   })
 
   useEffect(() => {
+    let isMounted = true
+
     // Listen for auth state changes
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (!isMounted) return
+
       setState(prev => ({ ...prev, loading: true, error: null }))
 
       if (firebaseUser) {
         try {
-          await loadUserData(firebaseUser)
+          await loadUserData(firebaseUser, isMounted)
         } catch (err: unknown) {
-          setState(prev => ({
-            ...prev,
-            error: err instanceof Error ? err.message : 'Failed to load user data',
-            loading: false
-          }))
+          if (isMounted) {
+            setState(prev => ({
+              ...prev,
+              error: err instanceof Error ? err.message : 'Failed to load user data',
+              loading: false
+            }))
+          }
         }
       } else {
-        setState({
-          user: null,
-          profile: null,
-          character: null,
-          loading: false,
-          error: null,
-        })
+        if (isMounted) {
+          setState({
+            user: null,
+            profile: null,
+            character: null,
+            loading: false,
+            error: null,
+          })
+        }
       }
     })
 
-    return () => unsubscribe()
+    return () => {
+      isMounted = false
+      unsubscribe()
+    }
   }, [])
 
-  const loadUserData = async (firebaseUser: FirebaseUser) => {
+  const loadUserData = async (firebaseUser: FirebaseUser, isMounted: boolean) => {
     try {
       // Get user profile from Firestore
       let profile = await userProfile.get(firebaseUser.uid)
 
+      if (!isMounted) return
+
       if (!profile) {
-        console.log('🔧 User profile not found, creating one...')
+        logger.log('🔧 User profile not found, creating one...')
         // Auto-create missing profile
         const { ensureUserProfile } = await import('@/lib/firebase-seed')
         profile = await ensureUserProfile(firebaseUser.uid, firebaseUser.email!, firebaseUser.displayName || undefined)
       }
+
+      if (!isMounted) return
 
       // Update email verification status
       if (firebaseUser.emailVerified !== profile.email_verified) {
@@ -71,19 +87,23 @@ export function useAuth() {
         profile.email_verified = firebaseUser.emailVerified
       }
 
+      if (!isMounted) return
+
       // Get character if user has selected one
       let character: Character | null = null
       if (profile.character_id) {
         character = await characters.getById(profile.character_id)
       }
 
-      setState({
-        user: firebaseUser,
-        profile,
-        character,
-        loading: false,
-        error: null,
-      })
+      if (isMounted) {
+        setState({
+          user: firebaseUser,
+          profile,
+          character,
+          loading: false,
+          error: null,
+        })
+      }
     } catch (err: unknown) {
       throw err
     }

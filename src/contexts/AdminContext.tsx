@@ -37,5 +37,6 @@ export function useAdminContext(): AdminContextType {
   return context
 }
 
-// Re-export the hook for direct usage
-export { useAdmin as useFirebaseAdmin }
+// Direct export of useAdmin hook for components that need admin functionality
+// without requiring the context wrapper
+export { useAdmin }

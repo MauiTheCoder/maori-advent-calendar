@@ -19,21 +19,28 @@ function getFirebaseConfig() {
     try {
       return validateFirebaseConfig()
     } catch (error) {
-      console.warn('Environment validation failed, using fallback:', error)
+      if (isDevelopment()) {
+        console.warn('Environment validation failed, using fallback:', error)
+      }
     }
   }
   
-  // Fallback configuration for production
-  console.warn('⚠️ Using hardcoded Firebase configuration as fallback')
-  return {
-    apiKey: "AIzaSyBp2XYYHYqTc9JykhiTdhmLywGTdFQPhhc",
-    authDomain: "mahuru-maori-2025.firebaseapp.com",
-    projectId: "mahuru-maori-2025",
-    storageBucket: "mahuru-maori-2025.firebasestorage.app",
-    messagingSenderId: "608916020621",
-    appId: "1:608916020621:web:f5671e3d57a838a49c71c4",
-    measurementId: "G-NJN363BV69"
+  // Fallback configuration - throw error instead of exposing credentials
+  const errorMsg = 'Firebase configuration missing. Please set the required environment variables.'
+  if (isDevelopment()) {
+    console.error('❌ Firebase configuration missing:', {
+      required: [
+        'NEXT_PUBLIC_FIREBASE_API_KEY',
+        'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN', 
+        'NEXT_PUBLIC_FIREBASE_PROJECT_ID',
+        'NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET',
+        'NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID',
+        'NEXT_PUBLIC_FIREBASE_APP_ID'
+      ],
+      provided: Object.keys(process.env).filter(key => key.startsWith('NEXT_PUBLIC_FIREBASE_'))
+    })
   }
+  throw new Error(errorMsg)
 }
 
 const firebaseConfig = getFirebaseConfig()
@@ -44,11 +51,13 @@ if (isDevelopment()) {
 }
 
 // Initialize Firebase
-console.log('🔥 Initializing Firebase with config:', {
-  projectId: firebaseConfig.projectId,
-  authDomain: firebaseConfig.authDomain,
-  environment: isDevelopment() ? 'development' : 'production'
-})
+if (isDevelopment()) {
+  console.log('🔥 Initializing Firebase with config:', {
+    projectId: firebaseConfig.projectId,
+    authDomain: firebaseConfig.authDomain,
+    environment: 'development'
+  })
+}
 
 const app = initializeApp(firebaseConfig)
 
@@ -57,7 +66,9 @@ export const auth = getAuth(app)
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app)
-console.log('Firebase initialized successfully')
+if (isDevelopment()) {
+  console.log('Firebase initialized successfully')
+}
 
 // Enable offline persistence and network
 if (typeof window !== 'undefined') {

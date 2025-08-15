@@ -35,20 +35,9 @@ export function validateFirebaseConfig(): FirebaseConfig {
   if (!config.appId) missingVars.push("NEXT_PUBLIC_FIREBASE_APP_ID");
 
   if (missingVars.length > 0) {
-    // Always use fallback configuration when environment variables are missing
-    console.warn(
-      "⚠️ Using fallback Firebase configuration. Missing variables:",
-      missingVars.join(", "),
-    );
-    return {
-      apiKey: "AIzaSyBp2XYYHYqTc9JykhiTdhmLywGTdFQPhhc",
-      authDomain: "mahuru-maori-2025.firebaseapp.com",
-      projectId: "mahuru-maori-2025",
-      storageBucket: "mahuru-maori-2025.firebasestorage.app",
-      messagingSenderId: "608916020621",
-      appId: "1:608916020621:web:f5671e3d57a838a49c71c4",
-      measurementId: "G-NJN363BV69",
-    };
+    const errorMsg = `Firebase configuration incomplete. Missing environment variables: ${missingVars.join(", ")}`;
+    console.error("❌ Firebase configuration error:", errorMsg);
+    throw new Error(errorMsg);
   }
 
   return config as FirebaseConfig;
@@ -82,13 +71,7 @@ export function getSiteUrl(): string {
 export function getAdminEmails(): string[] {
   const adminEmails = process.env.NEXT_PUBLIC_ADMIN_EMAILS;
   if (!adminEmails) {
-    // Fallback for production
-    if (
-      typeof window !== "undefined" &&
-      window.location.hostname.includes("netlify.app")
-    ) {
-      return ["leon.green@twoa.ac.nz"];
-    }
+    console.warn("⚠️ NEXT_PUBLIC_ADMIN_EMAILS not configured. Admin features will be disabled.");
     return [];
   }
 

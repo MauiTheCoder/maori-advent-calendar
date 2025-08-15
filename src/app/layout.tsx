@@ -39,7 +39,7 @@ export default function RootLayout({
           src="//unpkg.com/same-runtime/dist/index.global.js"
         />
       </head>
-      <body suppressHydrationWarning className="antialiased">
+      <body className="antialiased">
         <ClientBody>{children}</ClientBody>
       </body>
     </html>

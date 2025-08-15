@@ -36,9 +36,13 @@ export const useCMSContent = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let isMounted = true
+
     const unsubscribe = onSnapshot(
       collection(db, 'cms_content'),
       (snapshot) => {
+        if (!isMounted) return
+
         const contentMap: Record<string, CMSContent> = {}
         snapshot.docs.forEach(doc => {
           const data = doc.data() as CMSContent
@@ -48,12 +52,17 @@ export const useCMSContent = () => {
         setLoading(false)
       },
       (error: unknown) => {
-        console.error('Error fetching CMS content:', error)
-        setLoading(false)
+        if (isMounted) {
+          console.error('Error fetching CMS content:', error)
+          setLoading(false)
+        }
       }
     )
 
-    return () => unsubscribe()
+    return () => {
+      isMounted = false
+      unsubscribe()
+    }
   }, [])
 
   const updateContent = async (key: string, value: string | number | boolean | Record<string, unknown>, metadata?: Record<string, string>): Promise<void> => {
@@ -195,9 +204,13 @@ export const useMediaAssets = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let isMounted = true
+
     const unsubscribe = onSnapshot(
       query(collection(db, 'media_assets'), orderBy('uploadedAt', 'desc')),
       (snapshot) => {
+        if (!isMounted) return
+
         const assetsData = snapshot.docs.map(doc => ({
           ...doc.data(),
           id: doc.id
@@ -206,23 +219,24 @@ export const useMediaAssets = () => {
         setLoading(false)
       },
       (error: unknown) => {
-        console.error('Error fetching media assets:', error)
-        setLoading(false)
+        if (isMounted) {
+          console.error('Error fetching media assets:', error)
+          setLoading(false)
+        }
       }
     )
 
-    return () => unsubscribe()
+    return () => {
+      isMounted = false
+      unsubscribe()
+    }
   }, [])
 
   const uploadAsset = async (file: File, category?: string): Promise<MediaAsset> => {
-    try {
-      // This would need Firebase Storage setup
-      // For now, returning a mock implementation
-      throw new Error('Firebase Storage not implemented yet')
-    } catch (error: unknown) {
-      console.error('Error uploading asset:', error)
-      throw error
-    }
+    // Firebase Storage is not configured in this project
+    // This feature is disabled until storage is properly set up
+    console.warn('Media upload feature requires Firebase Storage configuration')
+    throw new Error('Media upload feature is not available. Firebase Storage is not configured.')
   }
 
   const deleteAsset = async (assetId: string): Promise<void> => {

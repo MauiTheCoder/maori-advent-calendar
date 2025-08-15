@@ -6,16 +6,24 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Characters are public - anyone can read them
+    // Characters are public - anyone can read them, only admins can write
     match /characters/{document} {
       allow read: if true;
-      allow write: if true; // Temporarily allow for seeding
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid));
     }
 
-    // Activities are public - anyone can read them
+    // Activities are public - anyone can read them, only admins can write
     match /activities/{document} {
       allow read: if true;
-      allow write: if true; // Temporarily allow for seeding
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid));
+    }
+
+    // Admin users - only admins can read/write admin user records
+    match /admin_users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId;
     }
 
     // User progress - users can read and write their own progress

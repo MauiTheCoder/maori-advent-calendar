@@ -54,8 +54,8 @@ Visit [http://localhost:3000](http://localhost:3000) to see the application.
 ## 📚 Documentation
 
 - **[QUICK_START.md](QUICK_START.md)** - 15-minute setup guide
-- **[FIREBASE_PROJECT_SETUP.md](FIREBASE_PROJECT_SETUP.md)** - Detailed Firebase configuration
-- **[FIREBASE_SETUP.md](FIREBASE_SETUP.md)** - Complete setup documentation
+- **[FIREBASE_SETUP.md](FIREBASE_SETUP.md)** - Complete Firebase setup documentation
+- **[NETLIFY_ENV_SETUP.md](NETLIFY_ENV_SETUP.md)** - Netlify deployment guide
 
 ## 🛠️ Available Scripts
 
@@ -125,7 +125,7 @@ NEXT_PUBLIC_SITE_URL=https://your-site.netlify.app
 4. Configure security rules
 5. Get web app configuration
 
-See [FIREBASE_PROJECT_SETUP.md](FIREBASE_PROJECT_SETUP.md) for detailed instructions.
+See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for detailed instructions.
 
 ## 🚀 Deployment
 

@@ -5,6 +5,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminProvider } from "@/contexts/AdminContext";
 import { CMSProvider } from "@/contexts/CMSContext";
 import FirebaseInitializer from "@/components/firebase/FirebaseInitializer";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export default function ClientBody({
   children,
@@ -18,13 +19,15 @@ export default function ClientBody({
   }, []);
 
   return (
-    <AuthProvider>
-      <AdminProvider>
-        <CMSProvider>
-          <FirebaseInitializer />
-          <div className="antialiased">{children}</div>
-        </CMSProvider>
-      </AdminProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <AdminProvider>
+          <CMSProvider>
+            <FirebaseInitializer />
+            <div className="antialiased">{children}</div>
+          </CMSProvider>
+        </AdminProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
