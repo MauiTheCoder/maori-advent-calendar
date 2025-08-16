@@ -17,12 +17,23 @@ export const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, 
       (user) => {
         setUser(user);
         setLoading(false);
+        
+        // Show success popup briefly when Firebase is ready
+        setShowSuccessPopup(true);
+        
+        // Auto-hide after 3 seconds
+        const timer = setTimeout(() => {
+          setShowSuccessPopup(false);
+        }, 3000);
+        
+        return () => clearTimeout(timer);
       },
       (error) => {
         setError(error.message);
@@ -71,6 +82,29 @@ export const FirebaseProvider = ({ children }) => {
   return (
     <FirebaseContext.Provider value={value}>
       {children}
+      
+      {/* Firebase Success Popup - Top Right Corner */}
+      {showSuccessPopup && (
+        <div 
+          className="fixed top-4 right-4 z-50 transition-all duration-300 ease-in-out"
+          style={{
+            transform: showSuccessPopup ? 'translateX(0)' : 'translateX(100%)',
+            opacity: showSuccessPopup ? 1 : 0
+          }}
+        >
+          <div className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2 max-w-xs">
+            <span className="text-lg">✅</span>
+            <span className="font-medium text-sm">Firebase services ready</span>
+            <button 
+              onClick={() => setShowSuccessPopup(false)}
+              className="ml-2 text-white hover:text-gray-200 text-lg leading-none w-5 h-5 flex items-center justify-center"
+              aria-label="Close notification"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </FirebaseContext.Provider>
   );
 };

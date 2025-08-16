@@ -1,37 +1,21 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Users can read and write their own profile
+    // Allow authenticated users to read/write their own data
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
-
-    // Characters are public - anyone can read them, only admins can write
-    match /characters/{document} {
+    
+    // Allow all users to read activities
+    match /activities/{activityId} {
       allow read: if true;
-      allow write: if request.auth != null && 
-        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid));
+      allow write: if request.auth != null;
     }
-
-    // Activities are public - anyone can read them, only admins can write
-    match /activities/{document} {
-      allow read: if true;
-      allow write: if request.auth != null && 
-        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid));
-    }
-
-    // Admin users - only admins can read/write admin user records
-    match /admin_users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-      allow create: if request.auth != null && request.auth.uid == userId;
-    }
-
-    // User progress - users can read and write their own progress
-    match /user_progress/{document} {
-      allow read, write: if request.auth != null &&
-        request.auth.uid == resource.data.user_id;
-      allow create: if request.auth != null &&
-        request.auth.uid == request.resource.data.user_id;
+    
+    // Admin-only access to admin collections
+    match /admin/{document=**} {
+      allow read, write: if request.auth != null && 
+        request.auth.token.email in resource.data.adminEmails;
     }
   }
 }
