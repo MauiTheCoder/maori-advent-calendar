@@ -1,4 +1,8 @@
 import { FirebaseProvider } from '../components/FirebaseProvider';
+import { AuthProvider } from '../contexts/AuthContext';
+import { AdminProvider } from '../contexts/AdminContext';
+import { CMSProvider } from '../contexts/CMSContext';
+import { ErrorBoundary } from '../components/ErrorBoundary';
 import './globals.css';
 
 export const metadata = {
@@ -12,9 +16,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <FirebaseProvider>
-          {children}
-        </FirebaseProvider>
+        <ErrorBoundary>
+          <FirebaseProvider>
+            <AuthProvider>
+              <AdminProvider>
+                <CMSProvider>
+                  {children}
+                </CMSProvider>
+              </AdminProvider>
+            </AuthProvider>
+          </FirebaseProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
