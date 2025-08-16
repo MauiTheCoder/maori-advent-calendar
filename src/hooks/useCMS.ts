@@ -4,13 +4,9 @@ import { useState, useEffect } from 'react'
 import { 
   collection, 
   doc, 
-  getDoc, 
-  getDocs, 
   setDoc, 
-  updateDoc, 
   deleteDoc, 
   query, 
-  where, 
   orderBy,
   onSnapshot
 } from 'firebase/firestore'
@@ -235,7 +231,7 @@ export const useMediaAssets = () => {
   const uploadAsset = async (file: File, category?: string): Promise<MediaAsset> => {
     // Firebase Storage is not configured in this project
     // This feature is disabled until storage is properly set up
-    console.warn('Media upload feature requires Firebase Storage configuration')
+    console.warn('Media upload feature requires Firebase Storage configuration', { file: file.name, category })
     throw new Error('Media upload feature is not available. Firebase Storage is not configured.')
   }
 

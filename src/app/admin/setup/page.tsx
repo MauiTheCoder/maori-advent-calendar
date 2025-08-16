@@ -23,7 +23,7 @@ export default function AdminSetup() {
     confirmPassword: ''
   })
 
-  const { signUp, signIn, user, isAuthenticated } = useAuthContext()
+  const { signUp, isAuthenticated } = useAuthContext()
   const { isAdmin, createAdminUser } = useAdminContext()
   const router = useRouter()
 

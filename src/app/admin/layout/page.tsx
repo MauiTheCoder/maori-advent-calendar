@@ -37,7 +37,7 @@ export default function LayoutManagement() {
   const router = useRouter()
   const { isAdmin, loading: adminLoading } = useAdmin()
   const permissions = useAdminPermissions()
-  const { layouts, loading: layoutsLoading, updateLayout } = useLayoutSettings()
+  const { layouts, updateLayout } = useLayoutSettings()
   
   const [editingSettings, setEditingSettings] = useState<Record<string, string | number | boolean>>({})
   const [saving, setSaving] = useState(false)

@@ -8,7 +8,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -33,7 +32,7 @@ export default function ContentManagement() {
   const router = useRouter()
   const { isAdmin, loading: adminLoading } = useAdmin()
   const permissions = useAdminPermissions()
-  const { content, loading: contentLoading, updateContent } = useCMSContent()
+  const { content, updateContent } = useCMSContent()
   
   const [editingContent, setEditingContent] = useState<Record<string, string | number | boolean>>({})
   const [saving, setSaving] = useState(false)

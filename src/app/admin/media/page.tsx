@@ -6,10 +6,8 @@ import { useAdmin, useAdminPermissions } from '@/hooks/useAdmin'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 export default function MediaManagement() {
@@ -17,7 +15,7 @@ export default function MediaManagement() {
   const { isAdmin, loading: adminLoading } = useAdmin()
   const permissions = useAdminPermissions()
   
-  const [uploading, setUploading] = useState(false)
+  const [, setUploading] = useState(false)
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
 

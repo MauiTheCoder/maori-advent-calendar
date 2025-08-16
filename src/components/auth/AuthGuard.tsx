@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useAuthContext } from '@/contexts/AuthContext'
 import AuthModal from './AuthModal'
 
@@ -18,9 +17,8 @@ export default function AuthGuard({
   requireVerification = false,
   fallback 
 }: AuthGuardProps) {
-  const { user, loading, emailVerified, isAuthenticated } = useAuthContext()
+  const { loading, emailVerified, isAuthenticated } = useAuthContext()
   const [showAuthModal, setShowAuthModal] = useState(false)
-  const router = useRouter()
 
   useEffect(() => {
     if (!loading) {

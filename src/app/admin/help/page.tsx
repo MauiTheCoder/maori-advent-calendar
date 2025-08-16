@@ -141,8 +141,8 @@ export default function AdminHelp() {
                       <h3 className="text-lg font-semibold">{section.title}</h3>
                       <p className="text-sm text-muted-foreground">{section.description}</p>
                       <ul className="space-y-2">
-                        {section.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="text-sm flex items-start space-x-2">
+                        {section.items.map((item) => (
+                          <li key={item} className="text-sm flex items-start space-x-2">
                             <span className="text-primary mt-1">•</span>
                             <span>{item}</span>
                           </li>
@@ -173,12 +173,12 @@ export default function AdminHelp() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {technicalInfo.map((section, index) => (
+                  {technicalInfo.map((section) => (
                     <div key={section.title} className="space-y-3">
                       <h3 className="text-lg font-semibold">{section.title}</h3>
                       <ul className="space-y-2">
-                        {section.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="text-sm flex items-start space-x-2">
+                        {section.items.map((item) => (
+                          <li key={item} className="text-sm flex items-start space-x-2">
                             <span className="text-accent mt-1">•</span>
                             <span className="font-mono text-xs bg-secondary/50 px-2 py-1 rounded">
                               {item}

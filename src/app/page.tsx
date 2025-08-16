@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { seedDatabase, needsSeeding, reseedWithKaitiaki } from '@/lib/firebase-seed'
+import { reseedWithKaitiaki } from '@/lib/firebase-seed'
 
 export default function Home() {
   const { isAuthenticated, user, signUp, signIn, loading } = useAuth()
@@ -27,7 +27,7 @@ export default function Home() {
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState('')
   const [showVerificationMessage, setShowVerificationMessage] = useState(false)
-  const [seeded, setSeeded] = useState(false)
+  const [, setSeeded] = useState(false)
 
   // Initialize Firebase backend and expose reseeding function
   useEffect(() => {

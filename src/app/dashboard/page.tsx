@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
 
 export default function Dashboard() {
-  const { isAuthenticated, user, profile, character, loading, signOut } = useAuth()
+  const { isAuthenticated, profile, character, loading, signOut } = useAuth()
   const router = useRouter()
 
   const handleSignOut = async () => {

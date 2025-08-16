@@ -10,13 +10,12 @@ import { motion } from 'framer-motion'
 import { mahuruActivities2025 } from '@/data/mahuru-activities'
 
 export default function Activity() {
-  const { isAuthenticated, user, profile, character, updateProfile, loading } = useAuth()
+  const { isAuthenticated, user, profile, updateProfile, loading } = useAuth()
   const router = useRouter()
   const params = useParams()
   const day = parseInt(params.day as string)
 
   const [activityCompleted, setActivityCompleted] = useState(false)
-  const [startTime] = useState(Date.now())
 
   const isValidDay = !isNaN(day) && day >= 1 && day <= 30
 
@@ -127,7 +126,6 @@ export default function Activity() {
 
   const handleCompleteActivity = async () => {
     try {
-      const timeSpent = Math.floor((Date.now() - startTime) / 1000)
       const activity = getMahuruActivity(day)
       
       if (!activity) return

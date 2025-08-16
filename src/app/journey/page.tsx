@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
-import { mahuruActivities2025 } from '@/data/mahuru-activities'
+// import { mahuruActivities2025 } from '@/data/mahuru-activities' // TODO: Re-enable when custom titles are needed
 
 interface DayNode {
   day: number
@@ -31,7 +31,7 @@ interface Activity {
 }
 
 export default function Journey() {
-  const { isAuthenticated, user, profile, character, loading } = useAuth()
+  const { isAuthenticated, profile, character, loading } = useAuth()
   const router = useRouter()
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
   const [activities, setActivities] = useState<Activity[]>([])
@@ -135,54 +135,55 @@ export default function Journey() {
     })
   }
 
-  const getDayTitle = (day: number, difficulty?: string | null): string => {
-    const activity = mahuruActivities2025.find(a => a.day === day)
-    if (!activity) return `Day ${day}`
+  // TODO: Re-enable this function when custom day titles are needed for activities
+  // const _getDayTitle = (day: number, difficulty?: string | null): string => {
+  //   const activity = /* mahuruActivities2025 */ [].find(a => a.day === day)
+  //   if (!activity) return `Day ${day}`
 
-    let activityText = ''
-    switch (difficulty) {
-      case 'intermediate':
-        activityText = activity.intermediate
-        break
-      case 'advanced':
-        activityText = activity.advanced
-        break
-      default:
-        activityText = activity.beginner
-    }
+  //   let activityText = ''
+  //   switch (difficulty) {
+  //     case 'intermediate':
+  //       activityText = activity.intermediate
+  //       break
+  //     case 'advanced':
+  //       activityText = activity.advanced
+  //       break
+  //     default:
+  //       activityText = activity.beginner
+  //   }
 
-    // Generate a short title from the activity text (first 3-4 words)
-    const words = activityText.split(' ')
-    if (words.length <= 4) return activityText
+  //   // Generate a short title from the activity text (first 3-4 words)
+  //   const words = activityText.split(' ')
+  //   if (words.length <= 4) return activityText
     
-    // Create meaningful short titles
-    if (activityText.includes('pronunciation')) return 'Pronunciation Practice'
-    if (activityText.includes('greet')) return 'Te Reo Greetings'
-    if (activityText.includes('goodbye')) return 'Farewell Practice'
-    if (activityText.includes('introduce')) return 'Self Introduction'
-    if (activityText.includes('home') || activityText.includes('objects')) return 'Home Vocabulary'
-    if (activityText.includes('doing') || activityText.includes('responses')) return 'Wellbeing Check'
-    if (activityText.includes('work') || activityText.includes('label')) return 'Workplace Te Reo'
-    if (activityText.includes('email') || activityText.includes('message')) return 'Digital Te Reo'
-    if (activityText.includes('friend') || activityText.includes('family')) return 'Introductions'
-    if (activityText.includes('shopping') || activityText.includes('supermarket')) return 'Shopping Te Reo'
-    if (activityText.includes('weather')) return 'Weather Description'
-    if (activityText.includes('pepeha')) return 'Pepeha Creation'
-    if (activityText.includes('karakia')) return 'Karakia Practice'
-    if (activityText.includes('hello')) return 'Greeting Varieties'
-    if (activityText.includes('waiata')) return 'Waiata Learning'
-    if (activityText.includes('walk') || activityText.includes('surroundings')) return 'Environment Description'
-    if (activityText.includes('count')) return 'Counting Practice'
-    if (activityText.includes('days') || activityText.includes('week')) return 'Days of Week'
-    if (activityText.includes('marae')) return 'Marae Knowledge'
-    if (activityText.includes('tour')) return 'Te Reo Tours'
-    if (activityText.includes('history')) return 'Te Reo History'
-    if (activityText.includes('coffee') || activityText.includes('tea')) return 'Kai Orders'
-    if (activityText.includes('Facebook') || activityText.includes('continue')) return 'Future Learning'
+  //   // Create meaningful short titles
+  //   if (activityText.includes('pronunciation')) return 'Pronunciation Practice'
+  //   if (activityText.includes('greet')) return 'Te Reo Greetings'
+  //   if (activityText.includes('goodbye')) return 'Farewell Practice'
+  //   if (activityText.includes('introduce')) return 'Self Introduction'
+  //   if (activityText.includes('home') || activityText.includes('objects')) return 'Home Vocabulary'
+  //   if (activityText.includes('doing') || activityText.includes('responses')) return 'Wellbeing Check'
+  //   if (activityText.includes('work') || activityText.includes('label')) return 'Workplace Te Reo'
+  //   if (activityText.includes('email') || activityText.includes('message')) return 'Digital Te Reo'
+  //   if (activityText.includes('friend') || activityText.includes('family')) return 'Introductions'
+  //   if (activityText.includes('shopping') || activityText.includes('supermarket')) return 'Shopping Te Reo'
+  //   if (activityText.includes('weather')) return 'Weather Description'
+  //   if (activityText.includes('pepeha')) return 'Pepeha Creation'
+  //   if (activityText.includes('karakia')) return 'Karakia Practice'
+  //   if (activityText.includes('hello')) return 'Greeting Varieties'
+  //   if (activityText.includes('waiata')) return 'Waiata Learning'
+  //   if (activityText.includes('walk') || activityText.includes('surroundings')) return 'Environment Description'
+  //   if (activityText.includes('count')) return 'Counting Practice'
+  //   if (activityText.includes('days') || activityText.includes('week')) return 'Days of Week'
+  //   if (activityText.includes('marae')) return 'Marae Knowledge'
+  //   if (activityText.includes('tour')) return 'Te Reo Tours'
+  //   if (activityText.includes('history')) return 'Te Reo History'
+  //   if (activityText.includes('coffee') || activityText.includes('tea')) return 'Kai Orders'
+  //   if (activityText.includes('Facebook') || activityText.includes('continue')) return 'Future Learning'
     
-    // Fallback to first few words
-    return words.slice(0, 3).join(' ') + '...'
-  }
+  //   // Fallback to first few words
+  //   return words.slice(0, 3).join(' ') + '...'
+  // }
 
   const getDayPoints = (day: number): number => {
     // Points increase as journey progresses
@@ -225,7 +226,8 @@ export default function Journey() {
   }
 
   const dayNodes = generateDayNodes()
-  const currentDayIndex = (profile?.current_day || 1) - 1
+  // TODO: Use current day index for scroll positioning or highlighting effects
+  // const _currentDayIndex = (profile?.current_day || 1) - 1
 
   const handleDayClick = (day: DayNode) => {
     if (!day.isUnlocked) {

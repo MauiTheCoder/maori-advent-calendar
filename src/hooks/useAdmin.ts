@@ -1,21 +1,11 @@
 'use client'
 
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { User } from 'firebase/auth'
-import { doc, getDoc, setDoc, collection, query, where, getDocs } from 'firebase/firestore'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { auth, db } from '@/lib/firebase'
 import { AdminUser } from '@/types/cms'
 
-interface AdminContextType {
-  adminUser: AdminUser | null
-  isAdmin: boolean
-  loading: boolean
-  checkAdminAccess: () => Promise<boolean>
-  updateAdminProfile: (updates: Partial<AdminUser>) => Promise<void>
-  createAdminUser: (user: Omit<AdminUser, 'uid' | 'createdAt'>, uid: string) => Promise<void>
-}
-
-const AdminContext = createContext<AdminContextType | null>(null)
 
 export const useAdmin = () => {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null)

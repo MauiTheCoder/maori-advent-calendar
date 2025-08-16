@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   const permissions = useAdminPermissions()
   const { content, loading: contentLoading } = useCMSContent()
   const { activities, loading: activitiesLoading } = useActivities()
-  const { settings, loading: settingsLoading } = useGlobalSettings()
+  const { settings } = useGlobalSettings()
 
   useEffect(() => {
     if (!adminLoading && !isAdmin) {

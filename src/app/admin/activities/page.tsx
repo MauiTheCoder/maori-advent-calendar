@@ -6,7 +6,6 @@ import { useAdmin, useAdminPermissions } from '@/hooks/useAdmin'
 import { useActivities } from '@/hooks/useCMS'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
@@ -91,15 +90,16 @@ export default function ActivitiesManagement() {
     }) : null)
   }
 
-  const handleNestedInputChange = (parent: string, field: string, value: string | number) => {
-    setEditingActivity((prev: ActivityContent | null) => prev ? ({
-      ...prev,
-      [parent]: {
-        ...(prev[parent as keyof ActivityContent] as Record<string, unknown> || {}),
-        [field]: value
-      }
-    }) : null)
-  }
+  // TODO: Implement nested input handling for complex activity content structures
+  // const handleNestedInputChange = (parent: string, field: string, value: string | number) => {
+  //   setEditingActivity((prev: ActivityContent | null) => prev ? ({
+  //     ...prev,
+  //     [parent]: {
+  //       ...(prev[parent as keyof ActivityContent] as Record<string, unknown> || {}),
+  //       [field]: value
+  //     }
+  //   }) : null)
+  // }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10">

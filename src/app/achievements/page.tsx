@@ -23,7 +23,7 @@ interface Achievement {
 }
 
 export default function Achievements() {
-  const { isAuthenticated, profile, character, loading } = useAuth()
+  const { isAuthenticated, profile, loading } = useAuth()
   const router = useRouter()
   const [achievements, setAchievements] = useState<Achievement[]>([])
 

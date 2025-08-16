@@ -23,8 +23,6 @@ import {
   getDocs,
   orderBy,
   limit,
-  serverTimestamp,
-  DocumentReference,
   onSnapshot
 } from 'firebase/firestore'
 import { auth, db } from './firebase'
@@ -144,7 +142,7 @@ export const firebaseAuth = {
   signOut: async (): Promise<void> => {
     try {
       await signOut(auth)
-    } catch (error: unknown) {
+    } catch {
       throw new Error('Failed to sign out')
     }
   },
@@ -174,7 +172,7 @@ export const firebaseAuth = {
     }
     try {
       await sendEmailVerification(auth.currentUser)
-    } catch (error: unknown) {
+    } catch {
       throw new Error('Failed to send verification email')
     }
   },
