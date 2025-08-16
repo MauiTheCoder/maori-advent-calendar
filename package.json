@@ -1,8 +1,9 @@
 {
   "name": "maori-advent-calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Mahuru Māori 2025 - Te Reo Māori Learning Platform",
+  "keywords": ["te-reo-maori", "education", "next.js", "firebase"],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
