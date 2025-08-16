@@ -7,21 +7,30 @@ export default function FirebaseInitializer() {
   const [isInitialized, setIsInitialized] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
+    return () => setIsMounted(false)
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+    
     const initializeFirebase = async () => {
       try {
         setLoading(true)
         setError(null)
 
-        // Check if we're in a browser environment and Firebase is configured
+        // Check if we're in a browser environment
         if (typeof window === 'undefined') {
           throw new Error('Firebase initialization must run in browser environment')
         }
 
-        // Validate Firebase configuration (will throw if missing)
-        const { validateFirebaseConfig } = await import('@/lib/env-validation')
-        validateFirebaseConfig()
+        // Basic Firebase configuration check
+        if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY || !process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
+          throw new Error('Firebase configuration missing')
+        }
 
         // Initialize database seeding if needed
         const { needsSeeding } = await import('@/lib/firebase-seed')
@@ -50,7 +59,12 @@ export default function FirebaseInitializer() {
     }
 
     initializeFirebase()
-  }, [])
+  }, [isMounted])
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!isMounted) {
+    return null
+  }
 
   if (loading) {
     return (

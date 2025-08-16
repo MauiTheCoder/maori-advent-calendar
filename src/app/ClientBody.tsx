@@ -24,7 +24,7 @@ export default function ClientBody({
         <AdminProvider>
           <CMSProvider>
             <FirebaseInitializer />
-            <div className="antialiased">{children}</div>
+            {children}
           </CMSProvider>
         </AdminProvider>
       </AuthProvider>
