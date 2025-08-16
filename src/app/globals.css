@@ -1,6 +1,6 @@
-/* @tailwind base; */
-/* @tailwind components; */
-/* @tailwind utilities; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -129,47 +129,3 @@
     );
   }
 }
-/* Hide all Firebase ready notifications */
-[role="alert"]:has-text("Firebase services ready"),
-div:has-text("Firebase services ready") {
-  display: none !important;
-}
-
-/* OR move them to bottom-right */
-div[class*="fixed"][class*="top-"] {
-  top: auto !important;
-  bottom: 1rem !important;
-  right: 1rem !important;
-}
-
-/* Auto-hide after 3 seconds */
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; display: none; }
-}
-
-[role="alert"]:has-text("Firebase services ready") {
-  animation: fadeOut 3s forwards;
-}
-/* Force hide ALL Firebase notifications */
-div:has-text("Firebase services ready"),
-[role="alert"]:has-text("✅ Firebase services ready"),
-div[class*="fixed"]:has-text("Firebase") {
-  display: none !important;
-}
-
-/* OR if you want to move them to bottom instead of hiding: */
-/*
-div[class*="fixed"][class*="top-"] {
-  top: auto !important;
-  bottom: 1rem !important;
-  right: 1rem !important;
-  animation: fadeOut 3s 2.7s forwards !important;
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; visibility: hidden; }
-}
-*/
