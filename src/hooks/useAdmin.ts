@@ -22,12 +22,26 @@ export const useAdmin = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    console.log('🔥 useAdmin: Starting admin hook initialization')
+    
+    // Set a timeout to prevent infinite loading
+    const timeoutId = setTimeout(() => {
+      console.warn('⚠️ useAdmin: Auth state change timeout - setting loading to false')
+      setLoading(false)
+    }, 10000) // 10 second timeout
+
     const unsubscribe = auth.onAuthStateChanged(async (user: User | null) => {
+      console.log('🔥 useAdmin: Auth state changed', { user: user?.email || 'null' })
+      clearTimeout(timeoutId) // Clear timeout since auth state changed
       setLoading(true)
+      
       if (user) {
         try {
+          console.log('🔥 useAdmin: Checking admin user for:', user.uid)
           const adminDoc = await getDoc(doc(db, 'admin_users', user.uid))
+          
           if (adminDoc.exists()) {
+            console.log('✅ useAdmin: Admin user found')
             const adminData = adminDoc.data() as AdminUser
             setAdminUser(adminData)
             
@@ -37,19 +51,25 @@ export const useAdmin = () => {
               lastLogin: new Date().toISOString()
             }, { merge: true })
           } else {
+            console.log('❌ useAdmin: No admin user found for this account')
             setAdminUser(null)
           }
         } catch (error: unknown) {
-          console.error('Error fetching admin user:', error)
+          console.error('❌ useAdmin: Error fetching admin user:', error)
           setAdminUser(null)
         }
       } else {
+        console.log('🔥 useAdmin: No authenticated user')
         setAdminUser(null)
       }
       setLoading(false)
+      console.log('🔥 useAdmin: Loading complete')
     })
 
-    return () => unsubscribe()
+    return () => {
+      clearTimeout(timeoutId)
+      unsubscribe()
+    }
   }, [])
 
   const checkAdminAccess = async (): Promise<boolean> => {
