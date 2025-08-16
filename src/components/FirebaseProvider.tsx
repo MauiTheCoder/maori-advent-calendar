@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from '../lib/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 const FirebaseContext = createContext({});
 
@@ -13,10 +13,12 @@ export const useFirebase = () => {
   return context;
 };
 
-export const FirebaseProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+import { ReactNode } from 'react';
+
+export const FirebaseProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   useEffect(() => {
@@ -27,13 +29,6 @@ export const FirebaseProvider = ({ children }) => {
         
         // Show success popup briefly when Firebase is ready
         setShowSuccessPopup(true);
-        
-        // Auto-hide after 3 seconds
-        const timer = setTimeout(() => {
-          setShowSuccessPopup(false);
-        }, 3000);
-        
-        return () => clearTimeout(timer);
       },
       (error) => {
         setError(error.message);
@@ -44,6 +39,17 @@ export const FirebaseProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
+  // Auto-hide success popup after 3 seconds
+  useEffect(() => {
+    if (showSuccessPopup) {
+      const timer = setTimeout(() => {
+        setShowSuccessPopup(false);
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessPopup]);
 
   const value = {
     user,

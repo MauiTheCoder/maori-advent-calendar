@@ -57,6 +57,15 @@ if (isDevelopment()) {
     authDomain: firebaseConfig.authDomain,
     environment: 'development'
   })
+  
+  // Debug potential quoting issues
+  console.log('🔍 Project ID Debug:', {
+    raw: firebaseConfig.projectId,
+    type: typeof firebaseConfig.projectId,
+    length: firebaseConfig.projectId?.length,
+    hasQuotes: firebaseConfig.projectId?.includes('"'),
+    charCodes: firebaseConfig.projectId?.split('').map(c => c.charCodeAt(0))
+  })
 }
 
 const app = initializeApp(firebaseConfig)
