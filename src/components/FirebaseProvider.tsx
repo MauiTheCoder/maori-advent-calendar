@@ -83,25 +83,23 @@ export const FirebaseProvider = ({ children }) => {
     <FirebaseContext.Provider value={value}>
       {children}
       
-      {/* Firebase Success Popup - Top Right Corner */}
+      {/* Firebase Success Popup - Bottom Right Corner */}
       {showSuccessPopup && (
-        <div 
-          className="fixed top-4 right-4 z-50 transition-all duration-300 ease-in-out"
-          style={{
-            transform: showSuccessPopup ? 'translateX(0)' : 'translateX(100%)',
-            opacity: showSuccessPopup ? 1 : 0
-          }}
-        >
-          <div className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2 max-w-xs">
-            <span className="text-lg">✅</span>
-            <span className="font-medium text-sm">Firebase services ready</span>
-            <button 
-              onClick={() => setShowSuccessPopup(false)}
-              className="ml-2 text-white hover:text-gray-200 text-lg leading-none w-5 h-5 flex items-center justify-center"
-              aria-label="Close notification"
-            >
-              ×
-            </button>
+        <div className="fixed bottom-4 right-4 z-50">
+          <div 
+            role="alert" 
+            className="relative rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:bottom-4 [&>svg]:text-foreground [&>svg~*]:pl-7 text-foreground w-80 border-green-200 bg-green-50"
+          >
+            <div className="text-sm [&_p]:leading-relaxed text-green-600 flex items-center justify-between">
+              <span>✅ Firebase services ready</span>
+              <button 
+                onClick={() => setShowSuccessPopup(false)}
+                className="ml-2 text-green-600 hover:text-green-800 text-lg leading-none w-5 h-5 flex items-center justify-center"
+                aria-label="Close notification"
+              >
+                ×
+              </button>
+            </div>
           </div>
         </div>
       )}
