@@ -19,6 +19,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^17.2.1",
     "firebase": "^11.10.0",
+    "firebase-admin": "^12.7.0",
     "framer-motion": "^12.23.0",
     "i18next-http-backend": "^2.6.1",
     "lucide-react": "^0.475.0",
