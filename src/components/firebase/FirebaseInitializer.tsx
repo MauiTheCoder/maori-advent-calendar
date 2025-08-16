@@ -8,6 +8,7 @@ export default function FirebaseInitializer() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
@@ -49,7 +50,13 @@ export default function FirebaseInitializer() {
         console.log('✅ Admin system initialized')
 
         setIsInitialized(true)
+        setShowSuccessAlert(true)
         console.log('🚀 Firebase initialization complete')
+        
+        // Auto-hide success alert after 3 seconds
+        setTimeout(() => {
+          setShowSuccessAlert(false)
+        }, 3000)
       } catch (err) {
         console.error('❌ Firebase initialization failed:', err)
         setError(err instanceof Error ? err.message : 'Failed to initialize Firebase')
@@ -93,7 +100,7 @@ export default function FirebaseInitializer() {
     )
   }
 
-  if (isInitialized) {
+  if (isInitialized && showSuccessAlert) {
     return (
       <div className="fixed top-4 right-4 z-50">
         <Alert className="w-80 border-green-200 bg-green-50">
