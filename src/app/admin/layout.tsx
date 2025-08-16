@@ -131,8 +131,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                 <span className="mx-2">/</span>
                 <span className="text-gray-900 font-medium">
                   {typeof window !== 'undefined' ? 
-                    window.location.pathname.split('/').pop()?.charAt(0).toUpperCase() + 
-                    window.location.pathname.split('/').pop()?.slice(1) 
+                    (() => {
+                      const lastSegment = window.location.pathname.split('/').pop();
+                      return lastSegment ? 
+                        lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1) : 
+                        'Dashboard';
+                    })()
                     : 'Dashboard'
                   }
                 </span>
