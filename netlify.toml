@@ -1,13 +1,25 @@
-[images]
-  remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
-
 [build]
-  command = "bun run build"
-  functions = ".netlify/functions"
+  command = "npm run build"
   publish = ".next"
 
 [build.environment]
+  NPM_FLAGS = "--version"
   NODE_VERSION = "18"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+# Redirect rules for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Accept = "text/html"}
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

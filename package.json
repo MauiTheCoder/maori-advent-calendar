@@ -4,15 +4,12 @@
   "private": true,
   "description": "Mahuru Māori 2025 - Te Reo Māori Learning Platform",
   "scripts": {
-    "dev": "next dev -H 0.0.0.0 --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "bunx tsc --noEmit && next lint",
-    "format": "bunx biome format --write",
-    "firebase:setup": "node scripts/setup-firebase.js",
-    "firebase:validate": "node scripts/validate-firebase.js",
-    "firebase:check": "bun run firebase:validate && echo 'Firebase configuration is ready!'",
-    "setup": "bun run firebase:setup && bun run firebase:validate"
+    "lint": "next lint",
+    "export": "next build && next export",
+    "netlify-build": "npm run build"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
@@ -20,6 +17,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.1",
     "firebase": "^11.10.0",
     "framer-motion": "^12.23.0",
     "lucide-react": "^0.475.0",
