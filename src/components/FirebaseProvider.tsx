@@ -94,13 +94,13 @@ export const FirebaseProvider = ({ children }: { children: ReactNode }) => {
         <div className="fixed bottom-4 right-4 z-50">
           <div 
             role="alert" 
-            className="relative rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:bottom-4 [&>svg]:text-foreground [&>svg~*]:pl-7 text-foreground w-80 border-green-200 bg-green-50"
+            className="relative rounded-lg border px-4 py-3 text-sm text-foreground w-80 border-green-200 bg-green-50 shadow-lg"
           >
-            <div className="text-sm [&_p]:leading-relaxed text-green-600 flex items-center justify-between">
+            <div className="text-sm text-green-600 flex items-center justify-between">
               <span>✅ Firebase services ready</span>
               <button 
                 onClick={() => setShowSuccessPopup(false)}
-                className="ml-2 text-green-600 hover:text-green-800 text-lg leading-none w-5 h-5 flex items-center justify-center"
+                className="ml-2 text-green-600 hover:text-green-800 text-lg leading-none"
                 aria-label="Close notification"
               >
                 ×
