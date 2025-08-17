@@ -12,10 +12,27 @@ service cloud.firestore {
       allow write: if request.auth != null;
     }
     
-    // Admin-only access to admin collections
+    // Admin users collection - allow authenticated users to read their own admin record
+    match /admin_users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && 
+        (request.auth.uid == userId || 
+         request.auth.token.email in ['leon.green@twoa.ac.nz']);
+      allow update: if request.auth != null && 
+        (request.auth.uid == userId || 
+         request.auth.token.email in ['leon.green@twoa.ac.nz']);
+    }
+    
+    // CMS content collections - require admin access
+    match /cms_content/{document=**} {
+      allow read, write: if request.auth != null && 
+        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid));
+    }
+    
+    // Other admin collections
     match /admin/{document=**} {
       allow read, write: if request.auth != null && 
-        request.auth.token.email in resource.data.adminEmails;
+        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid));
     }
   }
 }

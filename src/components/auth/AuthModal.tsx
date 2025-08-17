@@ -142,6 +142,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                       value={formData.name}
                       onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                       placeholder="Enter your full name"
+                      autoComplete="name"
                       required
                     />
                   </div>
@@ -155,6 +156,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     placeholder="Enter your email"
+                    autoComplete="email"
                     required
                   />
                 </div>
@@ -168,6 +170,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                       value={formData.password}
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                       placeholder="Enter your password"
+                      autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
                       required
                       minLength={6}
                     />
@@ -183,6 +186,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
                       placeholder="Confirm your password"
+                      autoComplete="new-password"
                       required
                       minLength={6}
                     />
