@@ -126,8 +126,8 @@ export const initializeAdminSystem = async (): Promise<void> => {
         instagram: ''
       },
       seo: {
-        title: 'Mahuru Activation 2025 - Te Reo Māori Learning Platform',
-        description: 'Join the Mahuru Challenge! Participate in 30 days of te reo Māori activation activities.',
+        title: 'Mahuru Māori 2025 - Te Reo Māori Learning Platform',
+        description: 'Join the Mahuru Māori Challenge! Participate in 30 days of te reo Māori activation activities.',
         keywords: ['Mahuru', 'te reo Māori', 'Māori language', 'learning', 'Aotearoa'],
         ogImage: ''
       },

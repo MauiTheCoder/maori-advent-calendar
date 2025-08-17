@@ -3,6 +3,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { AdminProvider } from '../contexts/AdminContext';
 import { CMSProvider } from '../contexts/CMSContext';
 import { ErrorBoundary } from '../components/ErrorBoundary';
+import { AdminUserCreator } from '../components/AdminUserCreator';
 import './globals.css';
 
 export const metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <AuthProvider>
               <AdminProvider>
                 <CMSProvider>
+                  <AdminUserCreator />
                   {children}
                 </CMSProvider>
               </AdminProvider>

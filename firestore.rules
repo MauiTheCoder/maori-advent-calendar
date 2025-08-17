@@ -16,8 +16,7 @@ service cloud.firestore {
     match /admin_users/{userId} {
       allow read: if request.auth != null && request.auth.uid == userId;
       allow create: if request.auth != null && 
-        (request.auth.uid == userId || 
-         request.auth.token.email in ['leon.green@twoa.ac.nz']);
+        (request.auth.uid == userId && request.auth.token.email in ['leon.green@twoa.ac.nz']);
       allow update: if request.auth != null && 
         (request.auth.uid == userId || 
          request.auth.token.email in ['leon.green@twoa.ac.nz']);

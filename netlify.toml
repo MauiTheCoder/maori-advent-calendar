@@ -23,3 +23,11 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+[images]
+  remote_images = [
+    "https://source.unsplash.com/.*",
+    "https://images.unsplash.com/.*",
+    "https://ext.same-assets.com/.*",
+    "https://ugc.same-assets.com/.*"
+]
