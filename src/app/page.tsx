@@ -113,7 +113,7 @@ export default function Home() {
   if (isAuthenticated && !user?.emailVerified) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10">
-        <header className="border-b border-border/50 backdrop-blur-sm bg-background/80">
+        <header className="backdrop-blur-sm bg-background/80">
           <div className="container mx-auto px-4 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
@@ -145,7 +145,7 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="p-4 bg-primary/5 border border-primary/20 rounded-md">
+                <div className="p-4 bg-primary/5 rounded-md">
                   <p className="text-sm text-center">
                     We've sent a verification email to <strong>{user?.email}</strong>
                   </p>
@@ -173,7 +173,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-accent/10">
       {/* Header */}
-      <header className="border-b border-border/50 backdrop-blur-sm bg-background/80">
+      <header className="backdrop-blur-sm bg-background/80">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">

@@ -39,7 +39,7 @@ export default function AdminSetup() {
       const adminUserData: AdminUser = {
         uid: user.uid,
         email: user.email || '',
-        name: user.displayName || 'Admin User',
+        displayName: user.displayName || 'Admin User',
         role: 'super_admin',
         permissions: {
           canEditContent: true,
@@ -50,9 +50,7 @@ export default function AdminSetup() {
           canViewAnalytics: true
         },
         createdAt: new Date().toISOString(),
-        lastLogin: new Date().toISOString(),
-        lastUpdated: new Date().toISOString(),
-        isActive: true
+        lastLogin: new Date().toISOString()
       }
 
       await setDoc(doc(db, 'admin_users', user.uid), adminUserData)
